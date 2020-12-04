@@ -13,6 +13,6 @@ public class DefaultController {
 
     @GetMapping("*")
     public String handleDefault() {
-        return "login";
+        return "redirect:/frontpage";
     }
 }

@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/layout :: head(title='Search profiles')">
+        <meta charset="UTF-8" />
+        <title>Search profiles</title>
+    </head>
+    <body>
+        <header th:replace="fragments/layout :: header">
+            <p>menu</p>
+        </header>
+        <main>
+            <h3>Search with username</h3>
+                <section class="container">
+                    <form class="form-inline" action="/lookup" method="POST">
+                    <input type="text" class="form-control mb-2 mr-sm-2">
+                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                </section>
+        </main>
+        
+        
+        <footer th:replace="fragments/layout :: footer">
+            <p>footer</p>
+        </footer>
+    </body>
+</html>

@@ -5,13 +5,17 @@
         <meta charset="UTF-8" />
     </head>
   <body>
-    <h1>Login page</h1>
-    <form th:action="@{/login.html}" method="post">
+    <h1>Register page</h1>
+    <form th:action="@{/register.html}" method="POST">
       <label for="username">Username</label>:
       <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
+      <label for="fullName">Full name</label>:
+      <input type="text" id="fullName" name="fullName" autofocus="autofocus" /> <br />
+      <label for="profileName">Name to show on profile</label>:
+      <input type="text" id="profileName" name="profileName" autofocus="autofocus" /> <br />
       <label for="password">Password</label>:
       <input type="password" id="password" name="password" /> <br />
-      <input type="submit" value="Log in" />
+      <input type="submit" value="Register account" />
     </form>
   </body>
 </html>

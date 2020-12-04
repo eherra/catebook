@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/layout :: head(title='Home')">
+        <meta charset="UTF-8" />
+        <title>Home</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    </head>
+  <body>
+        <header th:replace="fragments/layout :: header">
+            <p>menu</p>
+        </header>
+        <h1>Welcome to Casebook</h1>
+        <ol>
+            <li>Käyttäjiä maailmanlaajuisesti: XXX</li>
+            <li>Kuvia ladattu: XXX</li>
+            <li>Kommentteja lisätty: XXX</li>
+        </ol>
+      
+        <footer th:replace="fragments/layout :: footer">
+            <p>footer</p>
+        </footer>
+      
+
+  </body>
+</html>
