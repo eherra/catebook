@@ -1,6 +1,8 @@
 
 package casebook;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -23,11 +25,9 @@ public class RegisterController {
     
     @PostMapping("/register")
     public String addAccount(@RequestParam String username, @RequestParam String fullName, @RequestParam String profileName, @RequestParam String password) {
-        Account a = new Account(username, fullName, profileName, passwordEncoder.encode(password));
+        Account a = new Account(username, fullName, profileName, passwordEncoder.encode(password), new ArrayList());
         accountRepository.save(a);
-        System.out.println(a.getFullName());
-        System.out.println("käyttäjäluetu");
-        return "redirect:/";
+        return "redirect:/register";
     }
     
 }

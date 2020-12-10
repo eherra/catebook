@@ -7,33 +7,54 @@
         <header th:replace="fragments/layout :: header">
             <p>menu</p>
         </header>
-        <div class="container">
-            <h2></h2>
-        </div>
-        
-        <div class="row content">
-          <div class="col-sm-4">
-              <h3>User: Jonne Jonnenen</h3>
-              <h2>tähän profiilikuva</h2>
-              <h4>alle profiilikuvan vaihto nappi</h4>
-          </div>
-          <div class="col-sm-4 text-left"> 
-            <h3>Wall</h3>
-            <ol>
-                <li>tähän</li>
-                <li>listataan</li>
-                <li>kommentit</li>
-                <li>läpi</li>
-            </ol>
-          </div>
-          <div class="col-sm-4">
-            <div class="well">
-                <h3>kuva albumiin linkki nappi</h3>
+        <div class="container text-center">
+            <div class="row">
+                
+                <div class="col-sm-4 well text-left">
+                  <div class="well">
+                    <h4 th:text="${user}"></h4>
+                    <img src="https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg" class="img-circle" height="200" width="200" alt="profilePhoto">
+                  </div>
+                  <div class="well">
+                    <button type="button" class="btn btn-info">Change profile photo</button>
+                  </div>
+                </div>
+   
+                <div class="col-sm-4 text-center"> 
+                <h2>Wall</h2>
+                <div th:each="comment : ${wallComments}" class="row">
+                    <div class="col-sm-2 text-center">                      
+                        <img src="https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg" class="img-circle" height="40" width="40" alt="profilePhoto">
+                    </div>
+                    <div class="col-sm-8">
+                        <h5 th:text="${comment.commentor} + ', '"></h5>
+                        <small th:text="${comment.date}"></small>
+                        <p th:text="${comment.text}">Comment</p>                     
+                      </div>
+                    </div>
+
+                <br><br>
+                <h5>Post on the Wall</h5>
+                <form role="form" method="POST" th:action="@{/profilepage}">
+                  <div class="form-group">
+                        <textarea class="form-control" name="comment" rows="3" required></textarea>
+                        <button type="submit" class="btn btn-outline-info">Add comment</button>
+                  </div>
+                </form>
+                <br><br>
+
+              </div>
+              <div class="col-sm-4 text-center">
+                <div class="well">
+                    <h3 th:text="'Photo albums of ' + ${username}"></h3>
+                    <button type="button" class="btn btn-info">Albums</button>
+                </div>
+                <div class="well">
+                    <h3 th:text="'Friends of ' + ${username}"></h3>
+                    <button type="button" class="btn btn-info">See friends</button>
+                </div>
+              </div>
             </div>
-            <div class="well">
-                <h3>oma kaverilista nappi</h3>
-            </div>
-          </div>
         </div>
         
         <footer th:replace="fragments/layout :: footer">

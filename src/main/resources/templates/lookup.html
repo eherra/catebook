@@ -8,12 +8,23 @@
             <p>menu</p>
         </header>
         <main>
-            <h3>Search with username</h3>
+            <div>
+                <h3>Search profiles</h3>
                 <section class="container">
-                    <form class="form-inline" action="/lookup" method="POST">
-                    <input type="text" class="form-control mb-2 mr-sm-2">
-                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                    <form th:action="@{/lookup}" class="form-inline" method="POST">
+                        <input type="text" class="form-control mb-2 mr-sm-2" name="name" placeholder="Search with username..">
+                        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                    </form>    
                 </section>
+            </div>
+            
+            <ul>
+                <li th:each="account : ${accounts}">
+                    <p th:text="'Username: ' + ${account.username} + ', Full name: ' + ${account.fullName}">Esimerkkihenkilö</p>
+                    <button type="button" class="btn btn-info">Add to friend</button>
+                    <button type="button" class="btn btn-info">Show profile</button>
+                </li>
+            </ul>
         </main>
         
         
