@@ -8,26 +8,26 @@
             <p>menu</p>
         </header>
         <main>
-            <div>
-                <h3>Search profiles</h3>
+            <section class="container">
+                <h3 style="text-decoration: underline; text-align: left;">Search profiles</h3>
                 <section class="container">
-                    <form th:action="@{/lookup}" class="form-inline" method="POST">
-                        <input type="text" class="form-control mb-2 mr-sm-2" name="name" placeholder="Search with username..">
-                        <button type="submit" class="btn btn-primary mb-2">Submit</button>
-                    </form>    
+                    <div class="row">
+                        <form  th:action="@{/lookup}" <form class="form-inline" role="form" method="POST">
+                            <input type="text" class="form-control" name="name" placeholder="Search with username..">
+                            <button type="submit" class="btn btn-info">Submit</button>
+                        </form> 
+                    </div>
+                    <ul>
+                    <div th:each="account : ${accounts}">
+                        <h3>Results:</h3>
+                        <p th:text="'Username: ' + ${account.username} + ', Full name: ' + ${account.fullName}">Esimerkkihenkilö</p>
+                        <button type="button" class="btn btn-info">Add to friend</button>
+                        <button type="button" class="btn btn-info"><a style="text-decoration: none; color: white;" th:href="@{/profilepage/{user}(user=${account.username})}">Show profile</a></button>
+                    </div>
+                    </ul>
                 </section>
-            </div>
-            
-            <ul>
-                <div th:each="account : ${accounts}">
-                    <p th:text="'Username: ' + ${account.username} + ', Full name: ' + ${account.fullName}">Esimerkkihenkilö</p>
-                    <button type="button" class="btn btn-info">Add to friend</button>
-                    <button type="button" class="btn btn-info">Show profile</button>
-                </div>
-            </ul>
+            </section>
         </main>
-        
-        
         <footer th:replace="fragments/layout :: footer">
             <p>footer</p>
         </footer>

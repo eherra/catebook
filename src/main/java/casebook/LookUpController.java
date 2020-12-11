@@ -33,7 +33,5 @@ public class LookUpController {
                             .toCollection(ArrayList::new)); 
         
         return "redirect:/lookup";
-    }
-    
-    
+    }    
 }

@@ -13,9 +13,22 @@ public class FrontpageController {
     @Autowired
     private AccountRepository accountRepository;
     
+    @Autowired
+    private CommentRepository commentRepositroy;
+        
     @GetMapping("/frontpage")
-    public String viewRegisterPage(Model model) {
-        model.addAttribute("accounts", accountRepository.findAll());
+    public String viewFontPage(Model model) {
+        model.addAttribute("accounts", accountRepository.count());
+        model.addAttribute("comments", commentRepositroy.count());
+        model.addAttribute("photos", 0);
+        model.addAttribute("likes", getLikes());
         return "frontpage";
     }
+    
+    public int getLikes() {
+        return commentRepositroy.findAll().stream()
+                .mapToInt(h -> h.getLikes())
+                .sum();
+    }
+    
 }

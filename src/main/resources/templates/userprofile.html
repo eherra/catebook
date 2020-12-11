@@ -15,10 +15,7 @@
                 <div class="col-sm-4 well text-left">
                   <div class="well">
                     <h4 th:text="${user.fullName}"></h4>
-                    <img src="https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg" class="img-circle" height="200" width="200" alt="profilePhoto">
-                  </div>
-                  <div class="well">
-                    <button type="button" class="btn btn-info">Change profile photo</button>
+                    <img src="https://dogeseed.com/doge.2214a63a.svg" class="img-circle" height="200" width="200" alt="profilePhoto">
                   </div>
                 </div>
    
@@ -34,7 +31,7 @@
                         <p th:text="${comment.text}">Comment</p>   
                         <div class="row">
                             <p th:text="'Likes: ' + ${comment.likes}">Comment</p>    
-                            <form th:action="@{/profilepage/like/{id}/(id=${comment.id})}" method="POST">
+                            <form th:action="@{/profilepage/like/{id}(id=${comment.id})}" method="POST">
                                 <button type="submit" class="btn btn-info">Like</button>
                             </form>
                         </div>
