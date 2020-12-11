@@ -5,22 +5,26 @@
         <title>Home</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <style>
+            section {
+                text-align: center;
+            }
+        </style>
     </head>
   <body>
-        <header th:replace="fragments/layout :: header">
-            <p>menu</p>
-        </header>
-        <h1>Welcome to Casebook</h1>
-        <ol>
-            <li>Käyttäjiä maailmanlaajuisesti: XXX</li>
-            <li>Kuvia ladattu: XXX</li>
-            <li>Kommentteja lisätty: XXX</li>
-        </ol>
-      
+        <div>
+            <header th:replace="fragments/layout :: header">
+                <p>menu</p>
+            </header>
+        </div>
+      <section>
+            <h1>Welcome to Casebook</h1>
+                <h5 >Users globally: XXX</h5>
+                <h5>Photos added: XXX</h5>
+                <h5>Comments platformwise: XXX</h5>
+        </section>
         <footer th:replace="fragments/layout :: footer">
             <p>footer</p>
         </footer>
-      
-
   </body>
 </html>

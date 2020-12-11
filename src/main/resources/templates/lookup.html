@@ -19,11 +19,11 @@
             </div>
             
             <ul>
-                <li th:each="account : ${accounts}">
+                <div th:each="account : ${accounts}">
                     <p th:text="'Username: ' + ${account.username} + ', Full name: ' + ${account.fullName}">Esimerkkihenkilö</p>
                     <button type="button" class="btn btn-info">Add to friend</button>
                     <button type="button" class="btn btn-info">Show profile</button>
-                </li>
+                </div>
             </ul>
         </main>
         

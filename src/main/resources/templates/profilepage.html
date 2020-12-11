@@ -2,6 +2,8 @@
     <head th:replace="fragments/layout :: head(title='Profile page')">
         <meta charset="UTF-8" />
         <title>Profile page</title>
+        
+        
     </head>
     <body>
         <header th:replace="fragments/layout :: header">
@@ -21,7 +23,7 @@
                 </div>
    
                 <div class="col-sm-4 text-center"> 
-                <h2>Wall</h2>
+                <h2 style="text-decoration: underline;">Wall</h2>
                 <div th:each="comment : ${wallComments}" class="row">
                     <div class="col-sm-2 text-center">                      
                         <img src="https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg" class="img-circle" height="40" width="40" alt="profilePhoto">
@@ -29,7 +31,13 @@
                     <div class="col-sm-8">
                         <h5 th:text="${comment.commentor} + ', '"></h5>
                         <small th:text="${comment.date}"></small>
-                        <p th:text="${comment.text}">Comment</p>                     
+                        <p th:text="${comment.text}">Comment</p>   
+                        <div class="row">
+                            <p th:text="'Likes: ' + ${comment.likes}">Comment</p>    
+                            <form th:action="@{/profilepage/{id}(id=${comment.id})}" method="POST">
+                                <button type="submit" class="btn btn-info">Like</button>
+                            </form>
+                        </div>
                       </div>
                     </div>
 
