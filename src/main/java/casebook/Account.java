@@ -38,5 +38,13 @@ public class Account extends AbstractPersistable<Long> {
     private String password;
     
     @ManyToMany
-    List<Comment> wallComments = new ArrayList();    
+    List<Account> friendRequests = new ArrayList();
+    
+    @ManyToMany
+    List<Comment> wallComments = new ArrayList();   
+    
+    @ManyToMany
+    List<Account> friends = new ArrayList();
+    
+  
 }

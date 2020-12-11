@@ -33,23 +33,23 @@ public class ProfilePageController {
     @GetMapping("/profilepage")
     public String viewPage(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("wallComments", getMax25Comments(auth.getName()));
-        model.addAttribute("user", accountRepository.findByUsername(auth.getName()));
-        
-        return "profilepage";
+        return "redirect:/profilepage/" + auth.getName();
     }
     
     @GetMapping("/profilepage/{username}") 
     public String getProfilePage(Model model, @PathVariable String username) {
+        String currentlyLogged = SecurityContextHolder.getContext().getAuthentication().getName();
+        
         model.addAttribute("wallComments", getMax25Comments(username));
         model.addAttribute("user", accountRepository.findByUsername(username));
-        return "userprofile";
+        model.addAttribute("currentlyLogged", currentlyLogged);
+
+        return "profilepage";
      }
    
     @PostMapping("/profilepage/{id}")
     public String addComment(@PathVariable Long id, @RequestParam String comment) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Account accuntWhoCommented = accountRepository.findByUsername(username);
         Account whoseWall = accountRepository.getOne(id);
         
@@ -62,30 +62,20 @@ public class ProfilePageController {
         whoseWall.getWallComments().add(comm);
         
         accountRepository.save(accuntWhoCommented);
-        accountRepository.save(whoseWall);
-        
-        if (accuntWhoCommented.getId() == whoseWall.getId()) {
-            return "redirect:/profilepage";
-        }
+        accountRepository.save(whoseWall);    
         
         return "redirect:/profilepage/" + whoseWall.getUsername();
     }
     
-    @PostMapping("/profilepage/like/{id}") 
-    public String addLike(@PathVariable Long id) {
+    @PostMapping("/profilepage/like/{id}/user/{username}") 
+    public String addLike(@PathVariable Long id, @PathVariable String username) {
         Comment comm = commentRepository.getOne(id);
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-                
+                // find way to get data from whose page the like was coming from 
         comm.setLikes(comm.getLikes() + 1);
         
         commentRepository.save(comm);           
         
-        if (comm.getCommentor() == username) {
-            return "redirect:/profilepage";
-        }
-        
-        return "redirect:/profilepage";
+        return "redirect:/profilepage/{username}";
     }
     
     public String getDateString() {

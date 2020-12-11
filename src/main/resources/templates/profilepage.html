@@ -15,9 +15,9 @@
                 <div class="col-sm-4 well text-left">
                   <div class="well">
                     <h4 th:text="${user.fullName}"></h4>
-                    <img src="https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg" class="img-circle" height="200" width="200" alt="profilePhoto">
+                    <img src="https://dogeseed.com/doge.2214a63a.svg" class="img-circle" height="200" width="200" alt="profilePhoto">
                   </div>
-                  <div class="well">
+                  <div th:if="${user.username == currentlyLogged}" class="well">
                     <button type="button" class="btn btn-info">Change profile photo</button>
                   </div>
                 </div>
@@ -26,7 +26,7 @@
                 <h2 style="text-decoration: underline;">Wall</h2>
                 <div th:each="comment : ${wallComments}" class="row">
                     <div class="col-sm-2 text-center">                      
-                        <img src="https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg" class="img-circle" height="40" width="40" alt="profilePhoto">
+                        <img src="https://dogeseed.com/doge.2214a63a.svg" class="img-circle" height="40" width="40" alt="profilePhoto">
                     </div>
                     <div class="col-sm-8">
                         <h5 th:text="${comment.commentor} + ', '"></h5>
@@ -34,7 +34,7 @@
                         <p th:text="${comment.text}">Comment</p>   
                         <div class="row">
                             <p th:text="'Likes: ' + ${comment.likes}">Comment</p>    
-                            <form th:action="@{/profilepage/like/{id}/(id=${comment.id})}" method="POST">
+                            <form th:action="@{/profilepage/like/{id}/user/{username}(id=${comment.id}, username = ${user.username})}" method="POST">
                                 <button type="submit" class="btn btn-info">Like</button>
                             </form>
                         </div>
@@ -59,7 +59,9 @@
                 </div>
                 <div class="well">
                     <h4 th:text="'Friends of ' + ${user.username}"></h4>
-                    <button type="button" class="btn btn-info">See friends</button>
+                    <form th:action="@{/friendpage/{userId}(userId=${user.id})}" method="GET" >
+                        <button type="submit" class="btn btn-info">See friends</button>
+                    </form>
                 </div>
               </div>
             </div>

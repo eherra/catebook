@@ -14,15 +14,20 @@
                     <div class="row">
                         <form  th:action="@{/lookup}" <form class="form-inline" role="form" method="POST">
                             <input type="text" class="form-control" name="name" placeholder="Search with username..">
-                            <button type="submit" class="btn btn-info">Submit</button>
+                            <button type="submit" class="btn btn-info">Go!</button>
                         </form> 
                     </div>
                     <ul>
+                    <h3>Results:</h3>
                     <div th:each="account : ${accounts}">
-                        <h3>Results:</h3>
-                        <p th:text="'Username: ' + ${account.username} + ', Full name: ' + ${account.fullName}">Esimerkkihenkilö</p>
-                        <button type="button" class="btn btn-info">Add to friend</button>
-                        <button type="button" class="btn btn-info"><a style="text-decoration: none; color: white;" th:href="@{/profilepage/{user}(user=${account.username})}">Show profile</a></button>
+                        <div th:if="${account.username != currentlyLogged}">
+                            <p th:text="'Username: ' + ${account.username} + ', Full name: ' + ${account.fullName}">Esimerkkihenkilö</p>
+                            <form th:action="@{/lookup/addFriend/{id}(id=${account.id})}" method="POST" >
+                                <button type="submit" class="btn btn-info">Send friend request</button>
+                                <button type="button" class="btn btn-info"><a style="text-decoration: none; color: white;" th:href="@{/profilepage/{user}(user=${account.username})}">Show profile</a></button>
+                            </form>
+                        </div>
+
                     </div>
                     </ul>
                 </section>
