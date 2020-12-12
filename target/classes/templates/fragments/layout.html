@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="head(title)">
+        <meta charset="UTF-8" />
+        <title th:text="${title}">Layout</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+      <style>
+        .navbar {
+          margin-bottom: 0;
+          border-radius: 0;
+          background-color: #456268;
+        }
+        
+        .nav-link {
+            color: floralwhite;
+        }
+        
+        .nav-link:hover {
+            color: black;
+        }
+    
+        body {
+            padding-bottom:60px;   
+            background-color: #d0e8f2;
+            text-align: center;
+        }
+        footer {
+            position:fixed;
+            bottom:0;
+            background-color: #456268;
+        }
+        
+        
+  </style>
+    </head>
+    
+    <body>
+        <header th:fragment="header">
+            <nav class="navbar navbar-expand-sm">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/frontpage}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/lookup}">Search profiles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/profilepage}">Profile page</a>
+                    </li>
+                </ul>
+                <form th:action="@{/logout}" method="POST">
+                    <button type="submit" value="Logout">Log out</button>
+                </form>
+            </nav>
+        </header>
+        <footer th:fragment="footer" class="container-fluid text-center">
+            <p style="color: white">&#169 Catebook, All rights reserved<p>
+        </footer>
+    </body>
+    
+    
+    
+</html>

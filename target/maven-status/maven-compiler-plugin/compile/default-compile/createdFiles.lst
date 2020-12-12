@@ -1,0 +1,15 @@
+casebook/SecurityConfiguration.class
+casebook/WallCommentLikeRepository.class
+casebook/WallCommentLike.class
+casebook/FriendPageController.class
+casebook/Comment.class
+casebook/CommentRepository.class
+casebook/Account.class
+casebook/AccountRepository.class
+casebook/RegisterController.class
+casebook/DefaultController.class
+casebook/ProfilePageController.class
+casebook/CustomUserDetailsService.class
+casebook/Main.class
+casebook/SearchProfileController.class
+casebook/FrontpageController.class

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/layout :: head(title='Friend Page')">
+        <meta charset="UTF-8" />
+        <title>Friend page</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    </head>
+    <body>
+        <header th:replace="fragments/layout :: header">
+            <p>menu</p>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3 style="text-decoration: underline" th:text="'Friends of ' + ${user.username}"></h3>
+                    <Section th:each="user : ${user.friends}">
+                        <p th:text="${user.fullName}"></p>
+                    </Section>
+                </div>
+                <div class="col-sm-6" th:if="${user.username == currentlyLogged.username}">
+                    <h3 style="text-decoration: underline">Friend requests:</h3>
+                    <Section th:each="friend : ${user.friendRequests}">
+                        <p th:text="${friend.fullName}"></p>
+                        <div class="row form-inline">
+                            <div class="form-group">
+                                <form method="POST" th:action="@{/friendpage/accept/{id}(id=${friend.id})}">
+                                    <button type="submit" class="btn btn-info">Accept</button>
+                                </form>
+                            </div>
+                            <div class="form-group">
+                                <form method="POST" th:action="@{/friendpage/decline/{id}(id=${friend.id})}">
+                                    <button type="submit" class="btn btn-info">Decline</button>
+                                </form>
+                            </div>
+                        </div>
+                       </Section>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <footer th:replace="fragments/layout :: footer">
+            <p>footer</p>
+        </footer>
+    </body>
+</html>
