@@ -1,6 +1,8 @@
 
-package casebook;
+package catebook.controllers;
 
+import catebook.repositories.AccountRepository;
+import catebook.repositories.CommentRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

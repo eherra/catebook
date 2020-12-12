@@ -1,5 +1,5 @@
 
-package casebook;
+package catebook.objects;
 
 import java.util.ArrayList;
 import java.util.HashSet;

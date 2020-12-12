@@ -1,6 +1,8 @@
 
-package casebook;
+package catebook.services;
 
+import catebook.objects.Account;
+import catebook.repositories.AccountRepository;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,6 +1,8 @@
 
-package casebook;
+package catebook.controllers;
 
+import catebook.objects.Account;
+import catebook.repositories.AccountRepository;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
