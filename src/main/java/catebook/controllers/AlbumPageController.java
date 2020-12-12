@@ -2,7 +2,6 @@
 package catebook.controllers;
 
 import catebook.objects.Account;
-import catebook.objects.Photo;
 import catebook.repositories.AccountRepository;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
@@ -40,23 +39,17 @@ public class AlbumPageController {
             zeroIndexInAlbum = false;
         }
         
-//        if (photoIndexInArray == acc.getAlbumPhotos().size() - 1) {
-//            maxIndexInAlbum = false;
-//        }
+        if (photoIndexInArray == acc.getAlbumPhotos().size() - 1) {
+            maxIndexInAlbum = false;
+        }
                 
         model.addAttribute("user", acc);
         model.addAttribute("photoIndex", photoIndex);
         model.addAttribute("currentlyLogged", currentlyLogged);
-        try {
-            model.addAttribute("photo", getContent(photoIndex, username));
-        } catch (Exception e) {
-            model.addAttribute("photo", "paska");
-            System.out.println(e.getCause());
-            System.out.println(e.getMessage());
-        }
         
         model.addAttribute("maxIndex", maxIndexInAlbum);
         model.addAttribute("zeroIndex", zeroIndexInAlbum);
+        model.addAttribute("listEmpty", !acc.getAlbumPhotos().isEmpty());
         
         return "albumpage";
     }
@@ -72,18 +65,15 @@ public class AlbumPageController {
         return "redirect:/albumpage/{username}/" + (photoIndex + 1);
     }
     
-    public String getContent(Long id, String username) throws UnsupportedEncodingException {
+    @GetMapping(path = "/albumpage/{id}/content/{username}", produces = "image/jpeg")
+    @ResponseBody
+    public byte[] getContent(@PathVariable Long id, @PathVariable String username) {
         Account acc = accountRepository.findByUsername(username);
         int index = id.intValue();
-        int i = 0;
-        for (Photo pho :  acc.getAlbumPhotos()) {
-            if (i == index) {
-                byte[] encode = Base64.getEncoder().encode(pho.getContent());
-                return new String(encode, "UTF-8");
-            }
-            i++;
-        }
         
+        if (acc.getAlbumPhotos().get(index) != null) {
+            return acc.getAlbumPhotos().get(index).getContent();
+        }
         return null;
     }
 }
