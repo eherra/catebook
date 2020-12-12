@@ -2,8 +2,6 @@
     <head th:replace="fragments/layout :: head(title='Profile page')">
         <meta charset="UTF-8" />
         <title>Profile page</title>
-        
-        
     </head>
     <body>
         <header th:replace="fragments/layout :: header">
@@ -18,7 +16,12 @@
                     <img src="https://dogeseed.com/doge.2214a63a.svg" class="img-circle" height="200" width="200" alt="profilePhoto">
                   </div>
                   <div th:if="${user.username == currentlyLogged}" class="well">
-                    <button type="button" class="btn btn-info">Change profile photo</button>
+                    <form method="POST" th:action="@{/addPhoto}" enctype="multipart/form-data">
+                        <input type="file" name="file" id="file"/>
+                        <small>(Supported files png, jpg and jpeg. Not too big ones.)</small>
+                        <button type="submit" class="btn btn-info">Add photo to your album!</button>
+                    </form>     
+                          
                   </div>
                 </div>
    
@@ -32,7 +35,7 @@
                         <h5 th:text="${comment.commentor} + ', '"></h5>
                         <small th:text="${comment.date}"></small>
                         <p th:text="${comment.text}">Comment</p>   
-                        <div class="row">
+                        <div class="d-flex justify-content-center">
                             <p th:text="'Likes: ' + ${comment.likes}">Comment</p>    
                             <form th:action="@{/profilepage/like/{id}/user/{username}(id=${comment.id}, username = ${user.username})}" method="POST">
                                 <button type="submit" class="btn btn-info">Like</button>
@@ -54,8 +57,10 @@
               </div>
               <div class="col-sm-4 text-center">
                 <div class="well">
-                    <h4 th:text="'Photo albums of ' + ${user.username}"></h4>
-                    <button type="button" class="btn btn-info">Albums</button>
+                    <h4 th:text="'Photo album of ' + ${user.username}"></h4>
+                    <form th:action="@{/albumpage/{username}(username=${user.username})}" method="GET">
+                        <button type="submit" class="btn btn-info">Album</button>
+                    </form>
                 </div>
                 <div class="well">
                     <h4 th:text="'Friends of ' + ${user.username}"></h4>

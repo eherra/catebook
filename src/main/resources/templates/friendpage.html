@@ -20,26 +20,26 @@
                 </div>
                 <div class="col-sm-6" th:if="${user.username == currentlyLogged.username}">
                     <h3 style="text-decoration: underline">Friend requests:</h3>
-                    <Section th:each="friend : ${user.friendRequests}">
-                        <p th:text="${friend.fullName}"></p>
-                        <div class="row form-inline">
-                            <div class="form-group">
-                                <form method="POST" th:action="@{/friendpage/accept/{id}(id=${friend.id})}">
-                                    <button type="submit" class="btn btn-info">Accept</button>
-                                </form>
+                    <div class="d-flex justify-content-center">
+                        <Section th:each="friend : ${user.friendRequests}">
+                            <p th:text="${friend.fullName}"></p>
+                            <div class="row form-inline">
+                                <div class="form-group">
+                                    <form method="POST" th:action="@{/friendpage/accept/{id}(id=${friend.id})}">
+                                        <button type="submit" class="btn btn-info">Accept</button>
+                                    </form>
+                                </div>
+                                <div class="form-group">
+                                    <form method="POST" th:action="@{/friendpage/decline/{id}(id=${friend.id})}">
+                                        <button type="submit" class="btn btn-info">Decline</button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <form method="POST" th:action="@{/friendpage/decline/{id}(id=${friend.id})}">
-                                    <button type="submit" class="btn btn-info">Decline</button>
-                                </form>
-                            </div>
+                           </Section>
                         </div>
-                       </Section>
                     </div>
-                </div>
             </div>
         </div>
-       
         <footer th:replace="fragments/layout :: footer">
             <p>footer</p>
         </footer>

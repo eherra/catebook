@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/layout :: head(title='Album Page')">
+        <meta charset="UTF-8" />
+        <title>Album page</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    </head>
+    <body>
+        <header th:replace="fragments/layout :: header">
+            <p>menu</p>
+        </header>
+        <main>
+            <h3 style="text-align: center; text-decoration: underline" th:text="@{'Album of ' + ${user.username}}">Album text</h3>
+            <div th:if="${listEmpty}">
+                <div class="d-flex justify-content-center">
+                    <div class="form-group" th:if="${zeroIndex}" >
+                        <form method="POST" th:action="@{/albumpage/previous/{username}/getPhoto/{photoIndex}(username=${user.username}, photoIndex=${photoIndex})}">
+                            <button type="submit" class="btn btn-info">Previous</button>
+                        </form>
+                    </div>
+                    <div class="form-group" th:if="${maxIndex}">
+                        <form method="POST" th:action="@{/albumpage/next/{username}/getPhoto/{photoIndex}(username=${user.username}, photoIndex=${photoIndex})}">
+                            <button type="submit" class="btn btn-info">Next</button>
+                        </form>
+                    </div>
+                </div> 
+                <div>
+                    <img th:src="@{/albumpage/{id}/content/{username}(id=${photoIndex}, username=${user.username})}" width="400" height="500"/>
+                </div>
+            </div>
+            <h5 th:if="${!listEmpty}">No photos added.</h5>
+        </main>
+        <footer th:replace="fragments/layout :: footer">
+            <p>footer</p>
+        </footer>
+    </body>
+</html>

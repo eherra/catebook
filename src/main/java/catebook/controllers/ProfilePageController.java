@@ -90,6 +90,9 @@ public class ProfilePageController {
         return "redirect:/profilepage/{username}";
     }
     
+    
+    
+    
     public String getDateString() {
         LocalDateTime now = LocalDateTime.now();  
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");  
