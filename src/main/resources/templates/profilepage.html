@@ -17,8 +17,8 @@
                   </div>
                   <div th:if="${user.username == currentlyLogged}" class="well">
                     <form method="POST" th:action="@{/addPhoto}" enctype="multipart/form-data">
-                        <input type="file" name="file" id="file"/>
-                        <small>(Supported files png, jpg and jpeg. Not too big ones.)</small>
+                        <input type="file" name="file" id="file" required/>
+                        <small>(Supports only jpg files. Not too big ones.)</small>
                         <button type="submit" class="btn btn-info">Add photo to your album!</button>
                     </form>     
                           

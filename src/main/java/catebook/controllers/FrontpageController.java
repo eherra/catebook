@@ -22,7 +22,6 @@ public class FrontpageController {
     public String viewFontPage(Model model) {
         model.addAttribute("accounts", accountRepository.count());
         model.addAttribute("comments", commentRepositroy.count());
-//        model.addAttribute("photos", getPhotosAmount());
         model.addAttribute("likes", getLikes());
         return "frontpage";
     }
@@ -30,13 +29,6 @@ public class FrontpageController {
     public int getLikes() {
         return commentRepositroy.findAll().stream()
                 .mapToInt(h -> h.getLikes())
-                .sum();
-    }
-    
-    public int getPhotosAmount() {
-        return accountRepository.findAll().stream()
-                .map(h -> h.getAlbumPhotos())
-                .mapToInt(h -> h.size())
                 .sum();
     }
 }

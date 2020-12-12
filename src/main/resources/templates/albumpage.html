@@ -26,7 +26,7 @@
                     </div>
                 </div> 
                 <div>
-                    <img th:src="@{/albumpage/{id}/content/{username}(id=${photoIndex}, username=${user.username})}" width="400" height="500"/>
+                    <img th:src="*{'data:image/jpg;base64,' + photo}" alt="#" width="400" height="500"/>
                 </div>
             </div>
             <h5 th:if="${!listEmpty}">No photos added.</h5>

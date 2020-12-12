@@ -3,6 +3,8 @@ package catebook.controllers;
 
 import catebook.objects.Account;
 import catebook.repositories.AccountRepository;
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -44,6 +46,11 @@ public class AlbumPageController {
         model.addAttribute("user", acc);
         model.addAttribute("photoIndex", photoIndex);
         model.addAttribute("currentlyLogged", currentlyLogged);
+        try {
+            model.addAttribute("photo", getContent(photoIndex, username));
+        } catch (Exception e) {
+            model.addAttribute("photo", "");
+        }
         
         model.addAttribute("maxIndex", maxIndexInAlbum);
         model.addAttribute("zeroIndex", zeroIndexInAlbum);
@@ -63,14 +70,13 @@ public class AlbumPageController {
         return "redirect:/albumpage/{username}/" + (photoIndex + 1);
     }
     
-    @GetMapping(path = "/albumpage/{id}/content/{username}", produces = "image/jpeg")
-    @ResponseBody
-    public byte[] getContent(@PathVariable Long id, @PathVariable String username) {
+    public String getContent(Long id, String username) throws UnsupportedEncodingException {
         Account acc = accountRepository.findByUsername(username);
         int index = id.intValue();
         
         if (acc.getAlbumPhotos().get(index) != null) {
-            return acc.getAlbumPhotos().get(index).getContent();
+            byte[] encode = Base64.getEncoder().encode(acc.getAlbumPhotos().get(index).getContent());
+            return new String(encode, "UTF-8");
         }
         return null;
     }
