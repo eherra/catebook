@@ -22,7 +22,7 @@ public class FrontpageController {
     public String viewFontPage(Model model) {
         model.addAttribute("accounts", accountRepository.count());
         model.addAttribute("comments", commentRepositroy.count());
-        model.addAttribute("photos", getPhotosAmount());
+//        model.addAttribute("photos", getPhotosAmount());
         model.addAttribute("likes", getLikes());
         return "frontpage";
     }

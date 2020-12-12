@@ -50,7 +50,4 @@ public class Account extends AbstractPersistable<Long> {
     
     @ManyToMany
     List<Photo> albumPhotos = new ArrayList();   
-
-    
-  
 }
