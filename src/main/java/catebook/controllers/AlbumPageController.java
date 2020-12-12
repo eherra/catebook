@@ -72,11 +72,7 @@ public class AlbumPageController {
     public String getContent(Long id, String username) throws UnsupportedEncodingException {
         Account acc = accountRepository.findByUsername(username);
         int index = id.intValue();
-        
-        if (acc.getAlbumPhotos().get(index) != null) {
-            byte[] encode = Base64.getEncoder().encode(acc.getAlbumPhotos().get(index).getContent());
-            return new String(encode, "UTF-8");
-        }
-        return null;
+        byte[] encode = Base64.getEncoder().encode(acc.getAlbumPhotos().get(index).getContent());
+        return new String(encode, "UTF-8");
     }
 }
