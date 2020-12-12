@@ -30,6 +30,9 @@ public class ProfilePageController {
     @Autowired
     private CommentRepository commentRepository;
     
+    @Autowired
+    private WallCommentLikeRepository wallCommentLikeRepository;
+    
     @GetMapping("/profilepage")
     public String viewPage(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -47,6 +50,7 @@ public class ProfilePageController {
         return "profilepage";
      }
    
+    @Transactional
     @PostMapping("/profilepage/{id}")
     public String addComment(@PathVariable Long id, @RequestParam String comment) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -61,19 +65,26 @@ public class ProfilePageController {
         commentRepository.save(comm);
         whoseWall.getWallComments().add(comm);
         
-        accountRepository.save(accuntWhoCommented);
-        accountRepository.save(whoseWall);    
-        
+        WallCommentLike newLike = new WallCommentLike();
+        newLike.setCommentId(comm.getId());
+        wallCommentLikeRepository.save(newLike);
+                
         return "redirect:/profilepage/" + whoseWall.getUsername();
     }
     
+    @Transactional
     @PostMapping("/profilepage/like/{id}/user/{username}") 
     public String addLike(@PathVariable Long id, @PathVariable String username) {
-        Comment comm = commentRepository.getOne(id);
-                // find way to get data from whose page the like was coming from 
-        comm.setLikes(comm.getLikes() + 1);
+        String whoLikedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         
-        commentRepository.save(comm);           
+        Account accountWhoLiked = accountRepository.findByUsername(whoLikedUsername);
+        WallCommentLike commentLikeHelper = wallCommentLikeRepository.findByCommentId(id);
+        
+        if (commentLikeHelper.getWhoLiked().isEmpty() || !commentLikeHelper.getWhoLiked().contains(accountWhoLiked)) {
+            Comment comm = commentRepository.getOne(id);
+            comm.setLikes(comm.getLikes() + 1);
+            commentLikeHelper.getWhoLiked().add(accountWhoLiked);
+        } 
         
         return "redirect:/profilepage/{username}";
     }

@@ -4,6 +4,7 @@ package casebook;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class LookUpController {
+public class SearchProfileController {
     private List<Account> toViewAccounts;
     
     @Autowired
@@ -42,18 +43,18 @@ public class LookUpController {
         return "redirect:/lookup";
     }    
     
-    @PostMapping("/lookup/addFriend/{id}")
-    public String addUserToFriend(@PathVariable Long id) {
+    @Transactional
+    @PostMapping("/lookup/sendRequest/{id}")
+    public String sendFriendRequest(@PathVariable Long id) {
         String loggedUsersname = SecurityContextHolder.getContext().getAuthentication().getName();
         Account requestinAcc = accountRepository.findByUsername(loggedUsersname);
         Account toReceivedRequest = accountRepository.getOne(id);
         
-        if (!toReceivedRequest.getFriendRequests().contains(requestinAcc)) {
+        if (!toReceivedRequest.getFriendRequests().contains(requestinAcc)
+                && !toReceivedRequest.getFriends().contains(requestinAcc)) {
             toReceivedRequest.getFriendRequests().add(requestinAcc);
         }
         
-        accountRepository.save(toReceivedRequest);
-
         return "redirect:/lookup";
     }
 }

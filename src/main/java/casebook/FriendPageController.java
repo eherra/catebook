@@ -1,6 +1,7 @@
 
 package casebook;
 
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,13 +19,39 @@ public class FriendPageController {
     @GetMapping("/friendpage/{userId}")
     public String viewpage(Model model, @PathVariable Long userId) {
         Account acc = accountRepository.getOne(userId);
-        String currentlyLogged = SecurityContextHolder.getContext().getAuthentication().getName();
-       
+        String currentlyLoggedusername = SecurityContextHolder.getContext().getAuthentication().getName();
+        Account accLogged = accountRepository.findByUsername(currentlyLoggedusername);
 
         model.addAttribute("user", acc);
-        model.addAttribute("currentlyLogged", currentlyLogged);
+        model.addAttribute("currentlyLogged", accLogged);
                 
         return "friendpage";
+    }
+    
+    @Transactional
+    @PostMapping("/friendpage/accept/{id}")
+    public String acceptFriend(@PathVariable Long id) {
+        String currentlyLogged = SecurityContextHolder.getContext().getAuthentication().getName();
+        Account accCurrently = accountRepository.findByUsername(currentlyLogged);
+        Account whoSendRequest = accountRepository.getOne(id);
+        
+        accCurrently.getFriendRequests().remove(whoSendRequest);
+        accCurrently.getFriends().add(whoSendRequest);
+        whoSendRequest.getFriends().add(accCurrently);
+
+        return "redirect:/friendpage/" + accCurrently.getId();
+    }
+    
+    @Transactional
+    @PostMapping("/friendpage/decline/{id}")
+    public String declineFriend(@PathVariable Long id) {
+        String currentlyLoggedusername = SecurityContextHolder.getContext().getAuthentication().getName();
+        Account accCurrently = accountRepository.findByUsername(currentlyLoggedusername);
+        Account whoSendRequest = accountRepository.getOne(id);
+        
+        accCurrently.getFriendRequests().remove(whoSendRequest);
+
+        return "redirect:/friendpage/" + accCurrently.getId();
     }
     
 }

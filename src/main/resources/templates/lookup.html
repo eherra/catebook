@@ -21,8 +21,8 @@
                     <h3>Results:</h3>
                     <div th:each="account : ${accounts}">
                         <div th:if="${account.username != currentlyLogged}">
-                            <p th:text="'Username: ' + ${account.username} + ', Full name: ' + ${account.fullName}">Esimerkkihenkilö</p>
-                            <form th:action="@{/lookup/addFriend/{id}(id=${account.id})}" method="POST" >
+                            <p th:text="'Username: ' + ${account.username} + ', Full name: ' + ${account.fullName}">Example person</p>
+                            <form th:action="@{/lookup/sendRequest/{id}(id=${account.id})}" method="POST" >
                                 <button type="submit" class="btn btn-info">Send friend request</button>
                                 <button type="button" class="btn btn-info"><a style="text-decoration: none; color: white;" th:href="@{/profilepage/{user}(user=${account.username})}">Show profile</a></button>
                             </form>
