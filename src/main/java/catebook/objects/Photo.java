@@ -23,6 +23,5 @@ public class Photo extends AbstractPersistable<Long>  {
     private Long size;
 
     @Lob
-    @Basic(fetch = FetchType.LAZY)
     private byte[] content;
 }
