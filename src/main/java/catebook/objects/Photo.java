@@ -17,10 +17,6 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class Photo extends AbstractPersistable<Long>  {
     
     private String photoText;
-    
-    private String name;
-    private String mediaType;
-    private Long size;
 
     @Lob
     private byte[] content;

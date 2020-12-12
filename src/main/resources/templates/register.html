@@ -11,6 +11,15 @@
                 background-color: #79a3b1;
                 max-width: 800px;
                 margin: auto;
+                justify-content: center;
+                background-image: url('https://i.ibb.co/7JvgnwC/catto-removebg-preview.png');
+                background-repeat: no-repeat;
+                background-position: center;
+                margin-top: 15em;
+             }
+             
+             .register {
+                 text-align: center;
              }
     
         </style>
@@ -20,7 +29,7 @@
       <div class="container register-form">
             <div class="form">
                 <div class="note">
-                    <h2>Registration to Catebook.</h2>
+                    <h2>Registration to <b style="color: white; text-decoration: bold;">Cate</b><b style="color: #79a3b1;">book.</b></h2>
                 </div>
 
                 <div class="form-content">
@@ -32,14 +41,14 @@
                                     <span th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Full name error msg</span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" th:field="*{username}" class="form-control" name="username" placeholder="Username for loggin in" required/>
-                                    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</span>
+                                    <input type="text" th:field="*{profileName}" class="form-control" name="profileName" placeholder="Name you want to be called on Catebook" required/>
+                                    <span th:if="${#fields.hasErrors('profileName')}" th:errors="*{profileName}">Username error</span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" th:field="*{profileName}" class="form-control" name="profileName" placeholder="Name you want to be called on Casebook" required/>
-                                    <span th:if="${#fields.hasErrors('profileName')}" th:errors="*{profileName}">Profile name error</span>
+                                    <input type="text" th:field="*{username}" class="form-control" name="username" placeholder="Username for loggin in" required/>
+                                    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Profile name error</span>
 
                                 </div>
                                 <div class="form-group">
@@ -47,10 +56,10 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-light">Register!</button>
-                    </form>            
+                        <button type="submit" class="btn btn-info">Register!</button>
+                    </form>      
                     <h2>Already user?</h2>
-                    <button class="btn btn-light"><a th:href="@{/login}">Log in</a></button>
+                    <a th:href="@{/login}" class="btn btn-info">Log in</a>
                 </div>
             </div>
         </div>

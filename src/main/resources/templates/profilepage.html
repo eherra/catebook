@@ -12,46 +12,52 @@
                 
                 <div class="col-sm-4 well text-left">
                   <div class="well">
-                    <h4 th:text="${user.fullName}"></h4>
-                    <img src="https://dogeseed.com/doge.2214a63a.svg" class="img-circle" height="200" width="200" alt="profilePhoto">
+                    <h4 th:text="'Hi ' + ${user.fullName}+ ','"></h4>
+                    <img src="https://i.pinimg.com/originals/eb/0e/6a/eb0e6a06620425c90ea36b3f0336ffe6.jpg" class="img-circle" height="200" width="200" alt="profilePhoto">
                   </div>
                   <div th:if="${user.username == currentlyLogged}" class="well">
                     <form method="POST" th:action="@{/addPhoto}" enctype="multipart/form-data">
                         <input type="file" name="file" id="file" required/>
-                        <small>(Supports only jpg files. Not too big ones.)</small>
+                        <small>(Supports jpg, png and jpeg. Not too big ones.)</small>
+                        <input style="margin-bottom: 0.4em;" type="text" class="form-control col-xs-3" name="photoComment" placeholder="Describe the photo" required>
                         <button type="submit" class="btn btn-info">Add photo to your album!</button>
                     </form>     
                   </div>
                 </div>
+                
                 <div class="col-sm-4 text-center"> 
                 <h2 style="text-decoration: underline;">Wall</h2>
+                
                 <div th:each="comment : ${wallComments}" class="row">
-                    <div class="col-sm-2 text-center">                      
-                        <img src="https://dogeseed.com/doge.2214a63a.svg" class="img-circle" height="40" width="40" alt="profilePhoto">
+                    <div class="col-sm-1 text-center">                      
+                        <img src="https://i.pinimg.com/originals/eb/0e/6a/eb0e6a06620425c90ea36b3f0336ffe6.jpg" class="img-circle" height="40" width="40" alt="profilePhoto">
                     </div>
-                    <div class="col-sm-8">
-                        <h5 th:text="${comment.commentor} + ', '"></h5>
-                        <small th:text="${comment.date}"></small>
-                        <p th:text="${comment.text}">Comment</p>   
+                    
+                    <div class="col-sm-11">
+                        <div style="background-color: #79a3b1; margin-bottom: 0.5em; margin-left: 1em;">
+                            <small th:text="${comment.date}"></small>
+                            <h6 th:text="${comment.commentor} + ' commented:'"></h6>
+                            <p th:text="${comment.text}">Comment</p> 
+                        
                         <div class="d-flex justify-content-center">
-                            <p th:text="'Likes: ' + ${comment.likes}">Comment</p>    
+                            <p style="margin-right: 0.5em" th:text="'Likes: ' + ${comment.likes}">Comment</p>    
                             <form th:action="@{/profilepage/like/{id}/user/{username}(id=${comment.id}, username = ${user.username})}" method="POST">
-                                <button type="submit" class="btn btn-info">Like</button>
+                                <button type="submit" class="btn btn-info btn-sm">Like</button>
                             </form>
+                            </div>
                         </div>
                       </div>
                     </div>
 
                 <br><br>
-                <h5>Post on the Wall</h5>
+                <h5>Leave a post on the Wall</h5>
                 <form role="form" method="POST" th:action="@{/profilepage/{id}(id=${user.id})}">
-                  <div class="form-group">
-                        <textarea class="form-control" name="comment" rows="3" required></textarea>
+                    <div class="form-group">
+                        <textarea style="margin-bottom: 0.4em" class="form-control" name="comment" rows="3" required></textarea>
                         <button type="submit" class="btn btn-outline-info">Add comment</button>
-                  </div>
+                    </div>
                 </form>
                 <br><br>
-
               </div>
               <div class="col-sm-4 text-center">
                 <div class="well">

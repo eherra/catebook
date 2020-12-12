@@ -27,9 +27,13 @@
                 </div> 
                 <div>
                     <img th:src="@{/albumpage/{id}/content/{username}(id=${photoIndex}, username=${user.username})}" width="400" height="500"/>
+                    <p th:text="${photoText}"></p>
+                    <form th:if="${user.username == currentlyLogged}" method="POST" th:action="@{/deletephoto/{photoIndex}/{username}(photoIndex=${photoIndex}, username=${user.username})}">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete photo</button>
+                    </form>
                 </div>
             </div>
-            <h5 th:if="${!listEmpty}">No photos added.</h5>
+            <h5 th:if="${!listEmpty}">No photos added yet.</h5>
         </main>
         <footer th:replace="fragments/layout :: footer">
             <p>footer</p>

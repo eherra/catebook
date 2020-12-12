@@ -46,7 +46,10 @@ public class AlbumPageController {
         model.addAttribute("user", acc);
         model.addAttribute("photoIndex", photoIndex);
         model.addAttribute("currentlyLogged", currentlyLogged);
-        
+        if (!acc.getAlbumPhotos().isEmpty()) {
+            model.addAttribute("photoText", acc.getAlbumPhotos().get(photoIndexInArray).getPhotoText());
+        }
+
         model.addAttribute("maxIndex", maxIndexInAlbum);
         model.addAttribute("zeroIndex", zeroIndexInAlbum);
         model.addAttribute("listEmpty", !acc.getAlbumPhotos().isEmpty());
