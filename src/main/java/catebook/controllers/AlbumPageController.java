@@ -51,6 +51,8 @@ public class AlbumPageController {
             model.addAttribute("photo", getContent(photoIndex, username));
         } catch (Exception e) {
             model.addAttribute("photo", "paska");
+            System.out.println(e.getCause());
+            System.out.println(e.getMessage());
         }
         
         model.addAttribute("maxIndex", maxIndexInAlbum);
