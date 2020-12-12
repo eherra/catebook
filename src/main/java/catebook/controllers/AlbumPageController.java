@@ -2,6 +2,7 @@
 package catebook.controllers;
 
 import catebook.objects.Account;
+import catebook.objects.Photo;
 import catebook.repositories.AccountRepository;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
@@ -49,7 +50,7 @@ public class AlbumPageController {
         try {
             model.addAttribute("photo", getContent(photoIndex, username));
         } catch (Exception e) {
-            model.addAttribute("photo", "");
+            model.addAttribute("photo", "paska");
         }
         
         model.addAttribute("maxIndex", maxIndexInAlbum);
@@ -72,7 +73,15 @@ public class AlbumPageController {
     public String getContent(Long id, String username) throws UnsupportedEncodingException {
         Account acc = accountRepository.findByUsername(username);
         int index = id.intValue();
-        byte[] encode = Base64.getEncoder().encode(acc.getAlbumPhotos().get(index).getContent());
-        return new String(encode, "UTF-8");
+        int i = 0;
+        for (Photo pho :  acc.getAlbumPhotos()) {
+            if (i == index) {
+                byte[] encode = Base64.getEncoder().encode(pho.getContent());
+                return new String(encode, "UTF-8");
+            }
+            i++;
+        }
+        
+        return null;
     }
 }
