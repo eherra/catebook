@@ -23,13 +23,11 @@ public class PhotoController {
     @Autowired
     private AccountRepository accountRepository;
     
-    @Transactional
     @PostMapping("/addPhoto")
     public String save(@RequestParam("file") MultipartFile file) throws IOException {
         Photo photo = new Photo();
         
         photo.setContent(file.getBytes()); // the actual photo
-        photo.setName(file.getOriginalFilename());
         photo.setMediaType(file.getContentType());
         photo.setSize(file.getSize());
         
@@ -38,6 +36,7 @@ public class PhotoController {
         String currentlyLogged = SecurityContextHolder.getContext().getAuthentication().getName();
         Account currentAccount = accountRepository.findByUsername(currentlyLogged);
         currentAccount.getAlbumPhotos().add(photo);
+        accountRepository.save(currentAccount);
         
         return "redirect:/profilepage";
     }

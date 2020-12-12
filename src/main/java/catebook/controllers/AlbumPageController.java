@@ -39,9 +39,9 @@ public class AlbumPageController {
             zeroIndexInAlbum = false;
         }
         
-        if (photoIndexInArray == acc.getAlbumPhotos().size() - 1) {
-            maxIndexInAlbum = false;
-        }
+//        if (photoIndexInArray == acc.getAlbumPhotos().size() - 1) {
+//            maxIndexInAlbum = false;
+//        }
                 
         model.addAttribute("user", acc);
         model.addAttribute("photoIndex", photoIndex);
@@ -54,7 +54,6 @@ public class AlbumPageController {
         
         model.addAttribute("maxIndex", maxIndexInAlbum);
         model.addAttribute("zeroIndex", zeroIndexInAlbum);
-        model.addAttribute("listEmpty", !acc.getAlbumPhotos().isEmpty());
         
         return "albumpage";
     }
