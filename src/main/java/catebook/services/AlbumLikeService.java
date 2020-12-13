@@ -19,6 +19,7 @@ public class AlbumLikeService {
         albumLikeRepository.delete(like);
     }
     
+    
     public AlbumLike getAlbumLikeById(Long id) {
         return albumLikeRepository.findByPhotoId(id);
     }
