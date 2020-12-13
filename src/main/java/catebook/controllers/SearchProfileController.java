@@ -1,4 +1,3 @@
-
 package catebook.controllers;
 
 import catebook.objects.Account;

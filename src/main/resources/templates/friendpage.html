@@ -14,6 +14,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <h3 style="text-decoration: underline" th:text="'Friends of ' + ${user.profileName} +':'"></h3>
+                    <h6 th:if="${user.friends.empty}">No friends to show. :(</h6>
                     <section th:each="user : ${user.friends}">
                         <h5 th:text="${user.fullName}"></h5>
                         <a style="text-decoration: none; color: white; margin-left: 0.3em" th:href="@{/profilepage/{user}(user=${user.username})}" class="btn btn-info btn-sm">Show profile</a>
@@ -21,7 +22,7 @@
                 </div>
                 <div class="col-sm-6" th:if="${user.username == currentlyLogged.username}">
                     <h3 style="text-decoration: underline">Friend requests:</h3>
-                    <h6 th:if="${!user.friendRequests.empty}">No pending friend requests.</h6>
+                    <h6 th:if="${currentlyLogged.friendRequests.empty}">No pending friend requests.</h6>
                         <section th:each="friend : ${user.friendRequests}">
                             <h5 th:text="${friend.fullName}"></h5>
                             <div class="row form-inline justify-content-center">

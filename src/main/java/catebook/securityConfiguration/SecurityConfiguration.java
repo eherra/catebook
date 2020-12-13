@@ -30,9 +30,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/register").permitAll()
-                .antMatchers("/frontpage").permitAll() // toimii mutta pitäs saada silleen että pääsee login pagesta tähän suoraa
-                .antMatchers("/lookup").permitAll() 
-                .antMatchers("/profilepage").permitAll() 
                 .antMatchers("/h2-console","/h2-console/**").permitAll()
                 .anyRequest().authenticated();
         
