@@ -6,7 +6,7 @@ A social media platform for cats.
 
 The project has been made with a help of Java Spring boot, Spring MVC, Thymeleaf template engine for HTML modifications and some Bootstrap here and there. 
 
-Main focus has been on website's back end programming, but front end was not left without attention.
+Main focus has been on website's back end programming, but front end was not left without attention. (The UX might not be the best)
 
 ### How to get started.
 
