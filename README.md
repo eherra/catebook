@@ -49,7 +49,7 @@ At your own profile page and others - you can leave comments to the wall. The co
 ### Photo album
 **View from photo album.**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/albumpage.png" witdth="827%" height="519">
-If you are a visitor of the profile page, you have no access for the buttons "Change to profile photo" and "Delete photo" buttons.
+If you are a visitor of the album, you have no access for the buttons "Change to profile photo" and "Delete photo" buttons.
 
 In album you can have max 10 photos at the time. In case you want to add more, please delete photos before adding more.
 You can scroll the photos with buttons "previous" and "next" which will appear on top the photo. In a case you are on index 0 at the album, "previous" button disappears and index 9 or last photo of your album - "next" button disappears.
