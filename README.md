@@ -11,10 +11,6 @@ Main focus has been on website's back end programming, but front end was not lef
 ### How to get started.
 
 1. Clone the repository 
-#### Choose directory and run from terminal:
-```console
-git clone https://github.com/eherra/catebook.git
-```
 2. Start the program
 #### Terminal command to start the program from root folder (catebook):
 ```console
