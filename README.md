@@ -10,7 +10,7 @@ Main focus has been on website's back end programming, but front end was not lef
 
 ### How to get started.
 
-Clone the repository, start the program and from browser navigate to **"localhost:/8080/register"**. (in a case you opened the program on port 8080)
+Clone the repository, start the program and from browser navigate to **localhost:/8080/register**. (in a case you opened the program on port 8080)
 
 #### Terminal command to start the program from root folder (catebook):
 ```console
@@ -35,7 +35,7 @@ If you want to search for other cates from the platform, press ***Search profile
 From the page you can search for Cates around the platform by their cate name.
 
 ### Profile page
-Hitting from navigation bar "Profile page" link, you will be directed to:
+Hitting from navigation bar ***Profile page*** link, you will be directed to:
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/profilepage.png" witdth="827%" height="519">
 
 In the photo above, you are seeing a profile page as a visitor. 
