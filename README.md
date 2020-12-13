@@ -23,7 +23,11 @@ After pressing register page you will be redirected to login page where you can 
 **Succesfull login leads to a page below:**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/frontpage.png" witdth="827%" height="519">
 
-From the navigation bar you can "Search profile" link, and after pressing you will be direceted to page below:
+From the navigation bar you can "Search profile" link, and after pressing you will be direceted to **page below:**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/searchpage.png" witdth="827%" height="519">
 
 From the page you search for Cates around the platform by their 
+
+Hitting from navigation bar "Profile page" link:
+<img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/profilepage.png" witdth="827%" height="519">
+
