@@ -45,7 +45,7 @@ In a case where you are visiting your ***own*** profile page, the field *(photo 
 
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/loggedUser.png">
 
-At your own profile page and others - you can leave comments to the wall. The comment will include your cate name, time when creating the comment, context and amount of the likes of the comment. (zero likes if hasn't acquired any)
+At your own profile page and others - you can leave comments to the wall. The publish will include your cate name, time when creating the comment and amount of the likes of the comment. (zero likes if hasn't acquired any)
 
 ### Photo album
 **View from photo album.**
