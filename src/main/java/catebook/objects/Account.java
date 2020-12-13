@@ -37,7 +37,7 @@ public class Account extends AbstractPersistable<Long> {
     @NotEmpty
     private String password;
     
-    private byte[] profilePhoto;
+    private int indexOfProfilePhoto = -1;
     
     @ManyToMany
     List<Account> friendRequests = new ArrayList();

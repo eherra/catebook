@@ -11,12 +11,12 @@
             <p>menu</p>
         </header>
         <main>
-            <h3 style="text-align: center; text-decoration: underline" th:text="@{'Album of ' + ${user.username}}">Album text</h3>
+            <h3 style="text-align: center; text-decoration: underline" th:text="@{'Album of ' + ${user.profileName}}">Album text</h3>
             <div th:if="${listEmpty}">
                 <div class="d-flex justify-content-center">
                     <div class="form-group" th:if="${zeroIndex}" >
                         <form method="POST" th:action="@{/albumpage/previous/{username}/getPhoto/{photoIndex}(username=${user.username}, photoIndex=${photoIndex})}">
-                            <button type="submit" class="btn btn-info">Previous</button>
+                            <button style="margin-right: 0.4em" type="submit" class="btn btn-info">Previous</button>
                         </form>
                     </div>
                     <div class="form-group" th:if="${maxIndex}">
@@ -26,11 +26,32 @@
                     </div>
                 </div> 
                 <div>
-                    <img th:src="@{/albumpage/{id}/content/{username}(id=${photoIndex}, username=${user.username})}" width="400" height="500"/>
-                    <p th:text="${photoText}"></p>
-                    <form th:if="${user.username == currentlyLogged}" method="POST" th:action="@{/deletephoto/{photoIndex}/{username}(photoIndex=${photoIndex}, username=${user.username})}">
-                        <button type="submit" class="btn btn-danger btn-sm">Delete photo</button>
-                    </form>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <img th:src="@{/albumpage/{id}/content/{username}(id=${photoIndex}, username=${user.username})}" width="400" height="500"/>
+                        </div>
+                        <div class="col-md-2">
+                            <h5 style="text-decoration: underline">Photo description:</h5>
+                            <h4 th:text="${photo.photoText}"></h4>
+                            <small th:if="${photo.photoText == ''}">No description.</small>
+                            <div class="d-flex justify-content-center">
+                                <p style="margin-right: 0.4em" th:text="'Likes: ' + ${photo.likes}">amount of likes</p>
+                                <form method="POST" th:action="@{/likephoto/{photoId}/{username}/{photoIndex}(photoId=${photo.id}, username=${user.username}, photoIndex=${photoIndex})}">
+                                    <button type="submit" class="btn btn-info btn-sm">Like</button>
+                                </form>
+                            </div>
+                            <div th:if="${user.username == currentlyLogged}">
+                                <div class="d-flex justify-content-center">
+                                    <form  method="POST" th:action="@{/changeprofilephoto/{photoIndex}/{username}(photoIndex=${photoIndex}, username=${currentlyLogged})}">
+                                        <button style="margin-right: 0.3em" type="submit" class="btn btn-info btn-sm">Change to profile photo</button>
+                                    </form>
+                                    <form method="POST" th:action="@{/deletephoto/{photoIndex}/{username}(photoIndex=${photoIndex}, username=${currentlyLogged})}">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete photo</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <h5 th:if="${!listEmpty}">No photos added yet.</h5>

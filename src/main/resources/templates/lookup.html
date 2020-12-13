@@ -2,10 +2,8 @@
     <head th:replace="fragments/layout :: head(title='Search profiles')">
         <meta charset="UTF-8" />
         <title>Search profiles</title>
-  
     </head>
     <body style=" background-image: url('https://i.ibb.co/LYq8ysW/binocat-removebg-preview.png');">
- 
         <header th:replace="fragments/layout :: header">
             <p>menu</p>
         </header>
@@ -19,19 +17,18 @@
                             <button type="submit" class="btn btn-info">Go!</button>
                         </form> 
                     </div>
-                    <ul>
-                    <h3 style="text-decoration: underline; font-weight: bold;">Results:</h3>
+                    <h3 th:if="${!accounts.empty}" style="text-decoration: underline; font-weight: bold;">Results:</h3>
                     <div th:each="account : ${accounts}">
-                        <div th:if="${account.username != currentlyLogged}">
-                            <h5 style="color: white; font-weight: bold" th:text="'Username: ' + ${account.username} + ', Full name: ' + ${account.fullName}">Example person</h5>
+                        <div th:if="${account.username != currentAccount.username}">
+                            <h5 style="color: white; font-weight: bold" th:text="'Cate name: ' + ${account.profileName} + ', Full name: ' + ${account.fullName}">Example person</h5>
                             <form th:action="@{/lookup/sendRequest/{id}(id=${account.id})}" method="POST" >
-                                <button type="submit" class="btn btn-info">Send friend request</button>
+                                <a th:if="${#lists.contains(friendList, account.username)}" class="btn btn-light">You are friends.</a>
+                                <button th:unless="${#lists.contains(friendList, account.username)}" type="text" class="btn btn-info">Send friend request</button>
                                 <a style="text-decoration: none; color: white;" th:href="@{/profilepage/{user}(user=${account.username})}" class="btn btn-info">Show profile</a>
                             </form>
-                            
                         </div>
                     </div>
-                    </ul>
+                    <br><br><br>
                 </section>
             </section>
         </main>

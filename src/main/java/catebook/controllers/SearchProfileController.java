@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SearchProfileController {
-    private List<Account> toViewAccounts;
+    private String searchString;
     
     @Autowired
     private AccountRepository accountRepository;
@@ -26,21 +26,23 @@ public class SearchProfileController {
     @GetMapping("/lookup")
     public String view(Model model) {
         String loggedUsersname = SecurityContextHolder.getContext().getAuthentication().getName();
-        model.addAttribute("accounts", toViewAccounts);
-        model.addAttribute("currentlyLogged", loggedUsersname);
+        Account currentAcccount = accountRepository.findByUsername(loggedUsersname);
+        
+        if (searchString != null) {
+            model.addAttribute("accounts", getUsersToView());
+        } else {
+            model.addAttribute("accounts", new ArrayList());
+        }
+        model.addAttribute("currentAccount", currentAcccount);
+        model.addAttribute("friendList", getUsernamesFromFriends(loggedUsersname));
+        searchString = null;
+        
         return "lookup";
     }
     
     @PostMapping("/lookup")
     public String searchProfile(@RequestParam String name) {
-        String loggedUsersname = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        toViewAccounts = accountRepository.findAll()
-                .stream()
-                .filter(h-> h.getProfileName().contains(name))
-                .collect(Collectors 
-                            .toCollection(ArrayList::new)); 
-        
+        searchString = name;
         return "redirect:/lookup";
     }    
     
@@ -57,5 +59,21 @@ public class SearchProfileController {
         }
         
         return "redirect:/lookup";
+    }
+    
+    public List<String> getUsernamesFromFriends(String logged) {
+        return accountRepository.findByUsername(logged).getFriends()
+                .stream()
+                .map(h -> h.getUsername())
+                .collect(Collectors 
+                .toCollection(ArrayList::new));
+    }
+    
+    public List<Account> getUsersToView() {
+        return accountRepository.findAll()
+                .stream()
+                .filter(h-> h.getProfileName().contains(searchString))
+                .collect(Collectors 
+                .toCollection(ArrayList::new)); 
     }
 }

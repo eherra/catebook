@@ -13,30 +13,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h3 style="text-decoration: underline" th:text="'Friends of ' + ${user.username}"></h3>
-                    <Section th:each="user : ${user.friends}">
-                        <p th:text="${user.fullName}"></p>
-                    </Section>
+                    <h3 style="text-decoration: underline" th:text="'Friends of ' + ${user.profileName} +':'"></h3>
+                    <section th:each="user : ${user.friends}">
+                        <h5 th:text="${user.fullName}"></h5>
+                        <a style="text-decoration: none; color: white; margin-left: 0.3em" th:href="@{/profilepage/{user}(user=${user.username})}" class="btn btn-info btn-sm">Show profile</a>
+                    </section>
                 </div>
                 <div class="col-sm-6" th:if="${user.username == currentlyLogged.username}">
                     <h3 style="text-decoration: underline">Friend requests:</h3>
-                    <div class="d-flex justify-content-center">
-                        <Section th:each="friend : ${user.friendRequests}">
-                            <p th:text="${friend.fullName}"></p>
-                            <div class="row form-inline">
+                        <section th:each="friend : ${user.friendRequests}">
+                            <h5 th:text="${friend.fullName}"></h5>
+                            <div class="row form-inline justify-content-center">
                                 <div class="form-group">
                                     <form method="POST" th:action="@{/friendpage/accept/{id}(id=${friend.id})}">
-                                        <button type="submit" class="btn btn-info">Accept</button>
+                                        <button style="margin-right: 0.3em" type="submit" class="btn btn-info btn-sm">Accept</button>
                                     </form>
                                 </div>
                                 <div class="form-group">
                                     <form method="POST" th:action="@{/friendpage/decline/{id}(id=${friend.id})}">
-                                        <button type="submit" class="btn btn-info">Decline</button>
+                                        <button type="submit" class="btn btn-danger btn-sm">Decline</button>
                                     </form>
                                 </div>
                             </div>
-                           </Section>
-                        </div>
+                           </section>
                     </div>
             </div>
         </div>

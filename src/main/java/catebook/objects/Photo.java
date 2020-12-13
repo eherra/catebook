@@ -17,6 +17,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class Photo extends AbstractPersistable<Long>  {
     
     private String photoText;
+    private int likes;
 
     @Lob
     private byte[] content;

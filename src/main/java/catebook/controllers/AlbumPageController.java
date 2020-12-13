@@ -2,11 +2,13 @@
 package catebook.controllers;
 
 import catebook.objects.Account;
+import catebook.objects.AlbumLike;
+import catebook.objects.Photo;
 import catebook.repositories.AccountRepository;
-import java.io.UnsupportedEncodingException;
-import java.util.Base64;
+import catebook.repositories.AlbumLikeRepository;
+import catebook.repositories.PhotoRepository;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,9 @@ public class AlbumPageController {
     @Autowired
     private AccountRepository accountRepository;
     
+    @Autowired
+    private PhotoRepository photoRepository;
+    
     @GetMapping("/albumpage/{username}")
     public String viewAlbumPage(Model model, @PathVariable String username) {
         return "redirect:/albumpage/" + username + "/0";
@@ -34,22 +39,25 @@ public class AlbumPageController {
         boolean zeroIndexInAlbum = true;
         boolean maxIndexInAlbum = true;
 
-        if (photoIndexInArray <= 0) {
+        if (photoIndexInArray == 0) {
             photoIndexInArray = 0;
             zeroIndexInAlbum = false;
         }
         
-        if (photoIndexInArray == acc.getAlbumPhotos().size() - 1) {
+        if (photoIndexInArray == acc.getAlbumPhotos().size() - 1 || photoIndexInArray == 9) {
             maxIndexInAlbum = false;
         }
+        
                 
         model.addAttribute("user", acc);
         model.addAttribute("photoIndex", photoIndex);
         model.addAttribute("currentlyLogged", currentlyLogged);
+        
         if (!acc.getAlbumPhotos().isEmpty()) {
-            model.addAttribute("photoText", acc.getAlbumPhotos().get(photoIndexInArray).getPhotoText());
+            Photo photo = acc.getAlbumPhotos().get(photoIndexInArray);
+            model.addAttribute("photo", photo);
         }
-
+        
         model.addAttribute("maxIndex", maxIndexInAlbum);
         model.addAttribute("zeroIndex", zeroIndexInAlbum);
         model.addAttribute("listEmpty", !acc.getAlbumPhotos().isEmpty());
@@ -60,12 +68,13 @@ public class AlbumPageController {
     @PostMapping("/albumpage/previous/{username}/getPhoto/{photoIndex}")
     public String getPrevious(@PathVariable String username, @PathVariable Long photoIndex) {
         if (photoIndex > 0) photoIndex--;        
-        return "redirect:/albumpage/{username}/" + (photoIndex);
+        return "redirect:/albumpage/{username}/" + photoIndex;
     }
     
     @PostMapping("/albumpage/next/{username}/getPhoto/{photoIndex}")
     public String getNextPhoto(@PathVariable String username, @PathVariable Long photoIndex) {
-        return "redirect:/albumpage/{username}/" + (photoIndex + 1);
+        if (photoIndex < 9) photoIndex++;
+        return "redirect:/albumpage/{username}/" + photoIndex;
     }
     
     @GetMapping(path = "/albumpage/{id}/content/{username}", produces = "image/jpeg")

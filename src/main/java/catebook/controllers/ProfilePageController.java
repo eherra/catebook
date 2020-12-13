@@ -10,6 +10,7 @@ import catebook.objects.WallCommentLike;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,7 @@ public class ProfilePageController {
         Comment comm = new Comment();
         comm.setText(comment);
         comm.setDate(getDateString());
-        comm.setCommentor(accuntWhoCommented.getUsername());
+        comm.setCommentor(accuntWhoCommented.getProfileName());
         comm.setLikes(0);
         commentRepository.save(comm);
         whoseWall.getWallComments().add(comm);
@@ -90,12 +91,9 @@ public class ProfilePageController {
         return "redirect:/profilepage/{username}";
     }
     
-    
-    
-    
     public String getDateString() {
         LocalDateTime now = LocalDateTime.now();  
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");  
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm");  
         String formattedDate = now.format(format);  
         return formattedDate;
     }
@@ -103,13 +101,16 @@ public class ProfilePageController {
     public List<Comment> getMax25Comments(String username) {
         List<Comment> comments = accountRepository.findByUsername(username).getWallComments();
         if (comments.size() > 25){
-            int index = comments.size() - 25;
-            ArrayList<Comment> comments2 = new ArrayList();
-            for (int i = index; i < comments.size(); i++) {
-                comments2.add(comments.get(i));
+            int startingIndex = comments.size() - 25;
+            ArrayList<Comment> lengthFixedComments = new ArrayList();
+            for (int i = startingIndex; i < comments.size(); i++) {
+                lengthFixedComments.add(comments.get(i));
             }
-            return comments2;
-        }            
+            Collections.reverse(lengthFixedComments);
+            return lengthFixedComments;
+
+        }    
+        Collections.reverse(comments);
         return comments;
     }
 }
