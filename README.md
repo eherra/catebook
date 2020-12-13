@@ -10,7 +10,7 @@ Main focus has been on website's back end programming, but front end was not lef
 
 ### How to get started.
 
-Clone the repository, start the program and from browser navigate to "localhost:/8080/register". (in a case you opened the program on port 8080)
+Clone the repository, start the program and from browser navigate to **"localhost:/8080/register"**. (in a case you opened the program on port 8080)
 
 #### Terminal command to start the program from root folder (catebook)
 ```console
