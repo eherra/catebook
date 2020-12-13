@@ -29,7 +29,7 @@ After pressing register page you will be redirected to login page where you can 
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/frontpage.png" witdth="827%" height="519">
 
 ### Searching for other cates
-If you want to search for other cates from the platform, press **Search profiles** from navigation bar and you will be direceted to **page below:**
+If you want to search for other cates from the platform, press ***Search profiles*** from navigation bar and you will be direceted to **page below:**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/searchpage.png" witdth="827%" height="519">
 
 From the page you can search for Cates around the platform by their cate name.
@@ -57,7 +57,7 @@ You can scroll the photos with buttons "previous" and "next" which will appear o
 ### Friends
 On platform you send friend requests to other cates, and if they accept the request - you will become friends. 
 
-You can accept and see your friendlist from the profile page from button **See friends**.
+You can accept and see your friendlist from your profile page from button ***See friends***.
 
 ### Error cases
 
