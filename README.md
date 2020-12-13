@@ -32,15 +32,15 @@ After pressing register page you will be redirected to login page where you can 
 If you want to search for other cates from the platform, press ***Search profiles*** from navigation bar and you will be direceted to **page below:**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/searchpage.png" witdth="827%" height="519">
 
-From the page you can search for Cates around the platform by their cate name.
+From the page you can search for cates around the platform by their cate name.
 
 ### Profile page
 Hitting from navigation bar ***Profile page*** link, you will be directed to:
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/profilepage.png" witdth="827%" height="519">
 
-In the photo above, you are seeing a profile page as a visitor. 
+In the photo above, you are seeing a profile page as *a visitor*. 
 
-In a case where you are visiting your own profile page, a field appears on the below of the your profile photo where you can add photos to your photo album.
+In a case where you are visiting your *own* profile page, the field *(photo below)* appears on the below of the your profile photo where you can add photos to your photo album.
 
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/loggedUser.png">
 
