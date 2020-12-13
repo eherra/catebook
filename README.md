@@ -20,7 +20,7 @@ mvn compile exec:java -Dexec.mainClass=catebook.Main
 **Page like this appears:**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/register.png" witdth="827%" height="519">
 
-You fill the information with any info you want to provide. Limits for fields 4-30 characters (min. 4, max 30).
+You fill the information with any info you want to provide. Limits for fields 4-30 characters (min. 4, max. 30).
 In a case username is taken, you will get error message to the username input field.
 
 After pressing register page you will be redirected to login page where you can enter your username and password combination you just created.
