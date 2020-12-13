@@ -23,13 +23,13 @@ mvn compile exec:java -Dexec.mainClass=catebook.Main
 You fill the information with any info you want to provide. Limits for fields 4-30 characters (min. 4, max. 30).
 In a case username is taken, you will get error message to the username input field.
 
-After pressing register page you will be redirected to login page where you can enter your username and password combination you just created.
+After pressing register page you will be redirected to login page where you can enter your username/password combination you just created.
 
 **Succesfull login leads to a page below:**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/frontpage.png" witdth="827%" height="519">
 
 ### Searching for other cates
-If you want to search for other cates from the platform, press "Search profile" from navigation bar and you will be direceted to **page below:**
+If you want to search for other cates from the platform, press **Search profiles** from navigation bar and you will be direceted to **page below:**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/searchpage.png" witdth="827%" height="519">
 
 From the page you can search for Cates around the platform by their cate name.
@@ -57,11 +57,11 @@ You can scroll the photos with buttons "previous" and "next" which will appear o
 ### Friends
 On platform you send friend requests to other cates, and if they accept the request - you will become friends. 
 
-You can accept and see your friendlist from the profile page from button "See friends".
+You can accept and see your friendlist from the profile page from button **See friends**.
 
 ### Error cases
 
-If the page crashes, change url ending to "/frontpage" and press enter. If still not working, restart the program. Also creating new account from "/register" page should solve the case.
+If the page crashes, change url ending to **/frontpage** and press enter. If still not working, restart the program. Also creating new account from "/register" page should solve the case.
 
 If you forgot your password - create new user. :)
 
