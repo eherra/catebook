@@ -38,13 +38,13 @@ From the page you can search for cates around the platform by their cate name.
 Hitting from navigation bar ***Profile page*** link, you will be directed to:
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/profilepage.png" witdth="827%" height="519">
 
-In the photo above, you are seeing a profile page as *a visitor*. 
+In the photo above, you are seeing a profile page as ***a visitor***. 
 
-In a case where you are visiting your *own* profile page, the field *(photo below)* appears on the below of the your profile photo where you can add photos to your photo album.
+In a case where you are visiting your ***own*** profile page, the field *(photo below)* appears on the below of the your profile photo where you can add photos to your photo album.
 
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/loggedUser.png">
 
-At your own profile page and others - you can leave comments to the wall. The comment will include your cate name, time when creating the comment, context and amount of likes of the comment (zero if hasn't received any likes).
+At your own profile page and others - you can leave comments to the wall. The comment will include your cate name, time when creating the comment, context and amount of the likes of the comment. (zero likes if hasn't acquired any)
 
 ### Photo album
 **View from photo album.**
