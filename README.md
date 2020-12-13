@@ -12,8 +12,18 @@ Main focus has been on website's back end programming, but front end was not lef
 
 Clone the repository and open your localhost:/8080/register page. 
 
-Page like this appears:
-  <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/register.png" witdth="827%" height="519">
+**Page like this appears:**
+<img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/register.png" witdth="827%" height="519">
 
+You fill the information with any info you want to provide. Limits for fields 4-30 letters.
+In a case username is taken, you will get error message to the username input field.
 
+After pressing register page you will be redirected to login page where you can enter your username and password combination you just created.
 
+**Succesfull login leads to a page below:**
+<img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/frontpage.png" witdth="827%" height="519">
+
+From the navigation bar you can "Search profile" link, and after pressing you will be direceted to page below:
+<img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/searchpage.png" witdth="827%" height="519">
+
+From the page you search for Cates around the platform by their 
