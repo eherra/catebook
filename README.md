@@ -10,7 +10,7 @@ Main focus has been on website's back end programming, but front end was not lef
 
 ### How to get started.
 
-Clone the repository and open your localhost:/8080/register page. 
+Clone the repository and start the program and from browser navigate to "localhost:/8080/register". 
 
 **Page like this appears:**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/register.png" witdth="827%" height="519">
@@ -26,8 +26,25 @@ After pressing register page you will be redirected to login page where you can 
 From the navigation bar you can "Search profile" link, and after pressing you will be direceted to **page below:**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/searchpage.png" witdth="827%" height="519">
 
-From the page you search for Cates around the platform by their 
+From the page you can search for Cates around the platform by their cate name.
 
 Hitting from navigation bar "Profile page" link:
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/profilepage.png" witdth="827%" height="519">
+
+In the photo above, you are seeing a profile page as a visitor. 
+
+In a case where you are visiting your own profile page, a field appears on the below of the your profile page photo from where you can add photos to your photo album.
+
+<img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/loggedUser.png">
+
+**View form album page.**
+<img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/albumpage.png" witdth="827%" height="519">
+If you are a visitor of the profile page, you have no access for the buttons "Change to profile photo" and "Delete photo" buttons.
+
+On platform you send friend requests to other cates, and if they accept the request - you will became friends. 
+
+You can accept and see your friendlist from the profile page from button "See friends".
+
+
+
 
