@@ -10,12 +10,17 @@ Main focus has been on website's back end programming, but front end was not lef
 
 ### How to get started.
 
-Clone the repository, start the program and from browser navigate to **localhost:/8080/register**. (in a case you opened the program on port 8080)
-
+1. Clone the repository 
+#### Choose directory and run from terminal:
+```console
+git clone https://github.com/eherra/catebook.git
+```
+2. Start the program
 #### Terminal command to start the program from root folder (catebook):
 ```console
 mvn compile exec:java -Dexec.mainClass=catebook.Main
 ```
+3. From browser navigate to **localhost:/8080/register**. (in a case you opened the program on port 8080)
 
 **Page like this appears:**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/register.png" witdth="827%" height="519">
