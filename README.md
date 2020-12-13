@@ -10,12 +10,12 @@ Main focus has been on website's back end programming, but front end was not lef
 
 ### How to get started.
 
-Clone the repository and start the program and from browser navigate to "localhost:/8080/register". 
+Clone the repository, start the program and from browser navigate to "localhost:/8080/register". (in a case you opened the program on port 8080)
 
 **Page like this appears:**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/register.png" witdth="827%" height="519">
 
-You fill the information with any info you want to provide. Limits for fields 4-30 letters.
+You fill the information with any info you want to provide. Limits for fields 4-30 characters (min. 4, max 30).
 In a case username is taken, you will get error message to the username input field.
 
 After pressing register page you will be redirected to login page where you can enter your username and password combination you just created.
@@ -24,7 +24,7 @@ After pressing register page you will be redirected to login page where you can 
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/frontpage.png" witdth="827%" height="519">
 
 ### Searching for other cates
-From the navigation bar you can "Search profile" link, and after pressing you will be direceted to **page below:**
+If you want to search for other cates from the platform, press "Search profile" from navigation bar and you will be direceted to **page below:**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/searchpage.png" witdth="827%" height="519">
 
 From the page you can search for Cates around the platform by their cate name.
@@ -39,10 +39,15 @@ In a case where you are visiting your own profile page, a field appears on the b
 
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/loggedUser.png">
 
+At your own profile page and others - you can leave comments to the wall. The comment will include your cate name, time when creating the comment, context and amount of likes of the comment (zero if hasn't received any likes).
+
 ### Photo album
 **View from photo album.**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/albumpage.png" witdth="827%" height="519">
 If you are a visitor of the profile page, you have no access for the buttons "Change to profile photo" and "Delete photo" buttons.
+
+In album you can have max 10 photos at the time. In case you want to add more, please delete photos before adding more.
+You can scroll the photos with buttons "previous" and "next" which will appear on top the photo. In a case you are on index 0 at the album, "previous" button disappears and index 9 or last photo of your album - "next" button disappears.
 
 ### Friends
 On platform you send friend requests to other cates, and if they accept the request - you will became friends. 
