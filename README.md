@@ -59,6 +59,11 @@ On platform you send friend requests to other cates, and if they accept the requ
 
 You can accept and see your friendlist from the profile page from button "See friends".
 
+### Error cases
+
+If the page crashes, change url ending to "/frontpage" and press enter. If still not working, restart the program. Also creating new account from "/register" page should solve the case.
+
+If you forget your password - create new user. :)
 
 
 
