@@ -12,7 +12,7 @@ Main focus has been on website's back end programming, but front end was not lef
 
 Clone the repository, start the program and from browser navigate to "localhost:/8080/register". (in a case you opened the program on port 8080)
 
-#### to start from terminal and root directory
+#### Terminal command to start the program from root folder (catebook)
 ```console
 mvn compile exec:java -Dexec.mainClass=catebook.Main
 ```
