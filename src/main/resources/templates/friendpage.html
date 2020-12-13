@@ -21,6 +21,7 @@
                 </div>
                 <div class="col-sm-6" th:if="${user.username == currentlyLogged.username}">
                     <h3 style="text-decoration: underline">Friend requests:</h3>
+                    <h6 th:if="${!user.friendRequests.empty}">No pending friend requests.</h6>
                         <section th:each="friend : ${user.friendRequests}">
                             <h5 th:text="${friend.fullName}"></h5>
                             <div class="row form-inline justify-content-center">

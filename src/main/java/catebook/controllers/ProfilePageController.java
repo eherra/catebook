@@ -1,21 +1,16 @@
 package catebook.controllers;
 
 import catebook.objects.Account;
-import catebook.repositories.AccountRepository;
 import catebook.objects.Comment;
-import catebook.repositories.CommentRepository;
-import catebook.repositories.WallCommentLikeRepository;
 import catebook.objects.WallCommentLike;
+import catebook.services.AccountService;
+import catebook.services.CommentService;
+import catebook.services.WallCommentLikeService;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,27 +22,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ProfilePageController {
     
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountService accountService;
+
+    @Autowired
+    private CommentService commentService;
     
     @Autowired
-    private CommentRepository commentRepository;
-    
-    @Autowired
-    private WallCommentLikeRepository wallCommentLikeRepository;
+    private WallCommentLikeService wallCommentLikeService;
     
     @GetMapping("/profilepage")
     public String viewPage(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return "redirect:/profilepage/" + auth.getName();
+        return "redirect:/profilepage/" + accountService.getCurrentlyLoggedUsername();
     }
     
     @GetMapping("/profilepage/{username}") 
     public String getProfilePage(Model model, @PathVariable String username) {
-        String currentlyLogged = SecurityContextHolder.getContext().getAuthentication().getName();
-        
-        model.addAttribute("wallComments", getMax25Comments(username));
-        model.addAttribute("user", accountRepository.findByUsername(username));
-        model.addAttribute("currentlyLogged", currentlyLogged);
+        model.addAttribute("wallComments", commentService.getMax25Comments(username));
+        model.addAttribute("user", accountService.getAccountWithUsername(username));
+        model.addAttribute("currentlyLogged", accountService.getCurrentlyLoggedUsername());
 
         return "profilepage";
      }
@@ -55,21 +47,20 @@ public class ProfilePageController {
     @Transactional
     @PostMapping("/profilepage/{id}")
     public String addComment(@PathVariable Long id, @RequestParam String comment) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Account accuntWhoCommented = accountRepository.findByUsername(username);
-        Account whoseWall = accountRepository.getOne(id);
+        Account accuntWhoCommented = accountService.getCurrentlyLoggedAccount();
+        Account whoseWall = accountService.getAccountWithId(id);
         
         Comment comm = new Comment();
         comm.setText(comment);
         comm.setDate(getDateString());
         comm.setCommentor(accuntWhoCommented.getProfileName());
         comm.setLikes(0);
-        commentRepository.save(comm);
+        commentService.saveComment(comm);
         whoseWall.getWallComments().add(comm);
         
         WallCommentLike newLike = new WallCommentLike();
         newLike.setCommentId(comm.getId());
-        wallCommentLikeRepository.save(newLike);
+        wallCommentLikeService.saveWallCommentLike(newLike);
                 
         return "redirect:/profilepage/" + whoseWall.getUsername();
     }
@@ -77,13 +68,11 @@ public class ProfilePageController {
     @Transactional
     @PostMapping("/profilepage/like/{id}/user/{username}") 
     public String addLike(@PathVariable Long id, @PathVariable String username) {
-        String whoLikedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        
-        Account accountWhoLiked = accountRepository.findByUsername(whoLikedUsername);
-        WallCommentLike commentLikeHelper = wallCommentLikeRepository.findByCommentId(id);
+        Account accountWhoLiked = accountService.getCurrentlyLoggedAccount();
+        WallCommentLike commentLikeHelper = wallCommentLikeService.getWallCommentLikeById(id);
         
         if (commentLikeHelper.getWhoLiked().isEmpty() || !commentLikeHelper.getWhoLiked().contains(accountWhoLiked)) {
-            Comment comm = commentRepository.getOne(id);
+            Comment comm = commentService.getCommentWithId(id);
             comm.setLikes(comm.getLikes() + 1);
             commentLikeHelper.getWhoLiked().add(accountWhoLiked);
         } 
@@ -96,21 +85,5 @@ public class ProfilePageController {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm");  
         String formattedDate = now.format(format);  
         return formattedDate;
-    }
-    
-    public List<Comment> getMax25Comments(String username) {
-        List<Comment> comments = accountRepository.findByUsername(username).getWallComments();
-        if (comments.size() > 25){
-            int startingIndex = comments.size() - 25;
-            ArrayList<Comment> lengthFixedComments = new ArrayList();
-            for (int i = startingIndex; i < comments.size(); i++) {
-                lengthFixedComments.add(comments.get(i));
-            }
-            Collections.reverse(lengthFixedComments);
-            return lengthFixedComments;
-
-        }    
-        Collections.reverse(comments);
-        return comments;
     }
 }
