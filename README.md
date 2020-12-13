@@ -62,7 +62,7 @@ You can accept and see your friendlist from your profile page from button ***See
 
 ### Error cases
 
-If the page crashes, change url ending to **/frontpage** and press enter. If still not working, restart the program. Also creating new account from **/register** page should solve the case.
+Program should work properly on normal use and the links on page lead to valid places. However, if incorrect url is provided by user - page will inform the user about this by showing a error page. If something weird happens, navigate to **/frontpage** or try to create new user.
 
 If you forgot your password - create new user. :)
 
