@@ -30,14 +30,20 @@ public class PhotoController {
     
     @Transactional
     @PostMapping("/addPhoto")
-    public String save(@RequestParam("file") MultipartFile file, @RequestParam String photoComment) throws IOException {
+    public String savePhoto(@RequestParam("file") MultipartFile file, @RequestParam String photoComment) throws IOException {
+        Account currentAccount = accountService.getCurrentlyLoggedAccount();
+        
+        // already 10 photos on album
+        if (currentAccount.getAlbumPhotos().size() == 10) {
+            return "redirect:/profilepage";
+        }
+        
         Photo photo = new Photo();
         photo.setContent(file.getBytes());
         photo.setPhotoText(photoComment);
         photo.setLikes(0);
         photoService.savePhoto(photo);
         
-        Account currentAccount = accountService.getCurrentlyLoggedAccount();
         currentAccount.getAlbumPhotos().add(photo);
         
         AlbumLike newLike = new AlbumLike();

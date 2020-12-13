@@ -49,11 +49,11 @@ public class SearchProfileController {
     @PostMapping("/lookup/sendRequest/{id}")
     public String sendFriendRequest(@PathVariable Long id) {
         Account requestinAcc = accountService.getCurrentlyLoggedAccount();
-        Account toReceivedRequest = accountService.getAccountWithId(id);
+        Account toReceiveRequest = accountService.getAccountWithId(id);
         
-        if (!toReceivedRequest.getFriendRequests().contains(requestinAcc)
-                && !toReceivedRequest.getFriends().contains(requestinAcc)) {
-            toReceivedRequest.getFriendRequests().add(requestinAcc);
+        if (!toReceiveRequest.getFriendRequests().contains(requestinAcc)
+                && !toReceiveRequest.getFriends().contains(requestinAcc)) {
+            toReceiveRequest.getFriendRequests().add(requestinAcc);
         }
         searchString = stringForStayingAtPage;
         return "redirect:/lookup";
