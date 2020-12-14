@@ -21,10 +21,8 @@ mvn compile exec:java -Dexec.mainClass=catebook.Main
 **Page like this appears:**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/register.png" witdth="827%" height="519">
 
-Fill the inputs with info you want to add to your account. Limits for fields 4-30 characters (min. 4, max. 30).
+Fill the inputs with info you want to add to your/to your cat's account. Limits for fields 4-30 characters (min. 4, max. 30).
 In the case of username is taken, you will get error message to the username input field.
-
-[Button with space](http://example.com/){: .btn .btn-purple .mr-2 }
 
 After pressing **Register!** button you will be redirected to login page where you can enter your username/password combination you just created.
 
