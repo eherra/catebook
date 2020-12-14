@@ -33,7 +33,7 @@ After pressing **Register!** button you will be redirected to login page where y
 
 ### Searching for other cates
 If you want to search for other cates from the platform, press ***Search profiles*** from navigation bar and you will be direceted to **page below:**
-<img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/search.png" witdth="827%" height="519">
+<img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/searchh.png" witdth="827%" height="519">
 
 From the page you can search for cates around the platform by their cate name.
 
