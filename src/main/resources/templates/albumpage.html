@@ -15,12 +15,12 @@
             <div th:if="${listEmpty}">
                 <div class="d-flex justify-content-center">
                     <div class="form-group" th:if="${zeroIndex}" >
-                        <form method="POST" th:action="@{/albumpage/previous/{username}/getPhoto/{photoIndex}(username=${user.username}, photoIndex=${photoIndex})}">
+                        <form method="GET" th:action="@{/albumpage/previous/{username}/getPhoto/{photoIndex}(username=${user.username}, photoIndex=${photoIndex})}">
                             <button style="margin-right: 0.4em" type="submit" class="btn btn-info">Previous</button>
                         </form>
                     </div>
                     <div class="form-group" th:if="${maxIndex}">
-                        <form method="POST" th:action="@{/albumpage/next/{username}/getPhoto/{photoIndex}(username=${user.username}, photoIndex=${photoIndex})}">
+                        <form method="GET" th:action="@{/albumpage/next/{username}/getPhoto/{photoIndex}(username=${user.username}, photoIndex=${photoIndex})}">
                             <button type="submit" class="btn btn-info">Next</button>
                         </form>
                     </div>

@@ -51,13 +51,13 @@ public class AlbumPageController {
         return "albumpage";
     }
     
-    @PostMapping("/albumpage/previous/{username}/getPhoto/{photoIndex}")
+    @GetMapping("/albumpage/previous/{username}/getPhoto/{photoIndex}")
     public String getPrevious(@PathVariable String username, @PathVariable Long photoIndex) {
         if (photoIndex > 0) photoIndex--;        
         return "redirect:/albumpage/{username}/" + photoIndex;
     }
     
-    @PostMapping("/albumpage/next/{username}/getPhoto/{photoIndex}")
+    @GetMapping("/albumpage/next/{username}/getPhoto/{photoIndex}")
     public String getNextPhoto(@PathVariable String username, @PathVariable Long photoIndex) {
         if (photoIndex < 9) photoIndex++;
         return "redirect:/albumpage/{username}/" + photoIndex;

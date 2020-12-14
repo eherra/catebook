@@ -55,6 +55,7 @@ public class ProfilePageController {
         comm.setDate(getDateString());
         comm.setCommentor(accuntWhoCommented.getProfileName());
         comm.setLikes(0);
+        
         commentService.saveComment(comm);
         whoseWall.getWallComments().add(comm);
         

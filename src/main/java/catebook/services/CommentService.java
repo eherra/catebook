@@ -42,7 +42,7 @@ public class CommentService {
         if (comments.size() > 25){
             int startingIndex = comments.size() - 25;
             comments = comments.subList(startingIndex, comments.size());
-        }    
+        }  
         
         Collections.reverse(comments);
         return comments;
