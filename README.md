@@ -46,7 +46,7 @@ At your own profile page and at other users profile pages - you can leave commen
 ### Photo album
 **View from photo album.**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/albumpage.png" witdth="827%" height="519">
-If you are a visitor of the album, you have no access for the buttons "Change to profile photo" and "Delete photo" buttons.
+If you are a visitor of the album, you have no access for the buttons **Change to profile photo** and **Delete photo** buttons.
 
 In album you can have max 10 photos at the time. In case you want to add more, please delete photos before adding more.
 You can scroll the photos with buttons **previous** and **next** which will appear on top the photo. In the case of you are at index 0 at the album, **previous** button disappears and at index 9 or at last photo of your album - **next** button disappears.
@@ -58,7 +58,7 @@ You can accept and see your friendlist from your profile page from button ***See
 
 ### Error cases
 
-Program should work properly on normal use and the links on page lead to valid places. However, if incorrect url is provided by user - page will inform the user about this by showing a error page. If something weird happens, navigate to **/frontpage** or try to create new user.
+Program should work properly on normal use and the links on page lead to valid places. However, if incorrect url is provided by user - page will inform the user about this by showing a error page. If something weird happens, navigate to **/frontpage**.
 
 If you forgot your password - create new user. :)
 
