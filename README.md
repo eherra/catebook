@@ -54,9 +54,9 @@ In album you can have max 10 photos at the time. In case you want to add more, p
 You can scroll the photos with buttons **previous** and **next** which will appear on top the photo. In the case of you are at index 0 at the album, **previous** button disappears and at index 9 or at last photo of your album - **next** button disappears.
 
 ### Friends
-On platform you send friend requests to other cates, and if they accept the request - you will become friends. 
+On platform you can send friend requests to other cates, and if they accept the request - you will become friends. 
 
-You can accept and see your friendlist from your profile page from button ***See friends***.
+You can accept friend requests and see your friendlist from your profile page from button ***See friends***.
 
 ### Error cases
 
