@@ -26,7 +26,7 @@ In the case of username is taken, you will get error message to the username inp
 
 After pressing register page you will be redirected to login page where you can enter your username/password combination you just created.
 
-**Succesfull login leads to a page below:**
+**Succesful login leads to a page below:**
 <img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/frontpage.png" witdth="827%" height="519">
 
 ### Searching for other cates
