@@ -37,7 +37,7 @@ From the page you can search for cates around the platform by their cate name.
 
 ### Profile page
 Hitting from navigation bar ***Profile page*** link, you will be directed to:
-<img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/profile.png" witdth="827%" height="519">
+<img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/profilep.png" witdth="827%" height="519">
 
 When you are visiting someone else's profile page, the field where you can add photos to the album disappears from the below of the profile photo.
 
