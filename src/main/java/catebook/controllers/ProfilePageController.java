@@ -8,6 +8,7 @@ import catebook.services.CommentService;
 import catebook.services.WallCommentLikeService;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +83,7 @@ public class ProfilePageController {
     }
     
     public String getDateString() {
-        LocalDateTime now = LocalDateTime.now();  
+        LocalDateTime now = LocalDateTime.now(ZoneId.of("Europe/Helsinki"));  
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm");  
         String formattedDate = now.format(format);  
         return formattedDate;
