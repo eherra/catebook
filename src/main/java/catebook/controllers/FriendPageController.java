@@ -1,15 +1,13 @@
 
 package catebook.controllers;
 
-import catebook.objects.Account;
+import catebook.modules.Account;
 import catebook.services.AccountService;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class FriendPageController {
@@ -17,13 +15,13 @@ public class FriendPageController {
     @Autowired
     private AccountService accountService;
     
-    @GetMapping("/friendpage/{userId}")
-    public String viewpage(Model model, @PathVariable Long userId) {
-        Account acc = accountService.getAccountWithId(userId);
-        Account accLogged = accountService.getCurrentlyLoggedAccount();
+    @GetMapping("/friendpage/{username}")
+    public String viewpage(Model model, @PathVariable String username) {
+        Account whosePageAtAccount = accountService.getAccountWithUsername(username);
+        Account currentlyLoggedAccount = accountService.getCurrentlyLoggedAccount();
 
-        model.addAttribute("user", acc);
-        model.addAttribute("currentlyLogged", accLogged);
+        model.addAttribute("user", whosePageAtAccount);
+        model.addAttribute("currentlyLogged", currentlyLoggedAccount);
                 
         return "friendpage";
     }
@@ -31,25 +29,25 @@ public class FriendPageController {
     @Transactional
     @PostMapping("/friendpage/accept/{id}")
     public String acceptFriend(@PathVariable Long id) {
-        Account accCurrently = accountService.getCurrentlyLoggedAccount();
-        Account whoSendRequest = accountService.getAccountWithId(id);
+        Account currentlyLoggedAccount = accountService.getCurrentlyLoggedAccount();
+        Account whoSentRequest = accountService.getAccountWithId(id);
         
-        accCurrently.getFriendRequests().remove(whoSendRequest);
-        accCurrently.getFriends().add(whoSendRequest);
-        whoSendRequest.getFriends().add(accCurrently);
+        currentlyLoggedAccount.getFriendRequests().remove(whoSentRequest);
+        currentlyLoggedAccount.getFriends().add(whoSentRequest);
+        whoSentRequest.getFriends().add(currentlyLoggedAccount);
 
-        return "redirect:/friendpage/" + accCurrently.getId();
+        return "redirect:/friendpage/" + currentlyLoggedAccount.getUsername();
     }
     
     @Transactional
     @PostMapping("/friendpage/decline/{id}")
     public String declineFriend(@PathVariable Long id) {
-        Account accCurrently = accountService.getCurrentlyLoggedAccount();
-        Account whoSendRequest = accountService.getAccountWithId(id);
+        Account currentlyLoggedAccount = accountService.getCurrentlyLoggedAccount();
+        Account whoSentRequest = accountService.getAccountWithId(id);
         
-        accCurrently.getFriendRequests().remove(whoSendRequest);
+        currentlyLoggedAccount.getFriendRequests().remove(whoSentRequest);
 
-        return "redirect:/friendpage/" + accCurrently.getId();
+        return "redirect:/friendpage/" + currentlyLoggedAccount.getUsername();
     }
     
 }

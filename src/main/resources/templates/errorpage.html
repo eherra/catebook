@@ -6,14 +6,17 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     </head>
-    <body style="background-image: url('https://miro.medium.com/max/500/1*kDdY6LStfWm_97bjx9W0bQ.jpeg'); background-repeat: no-repeat; background-size: cover;">
+    <body style="background-image: url('https://i.ibb.co/Hq3cTJD/lightcatto.jpg'); background-repeat: no-repeat; background-size: cover;">
         <header th:replace="fragments/layout :: header">
             <p>menu</p>
         </header>
-        <h3 style="margin-top: 5em; color: white">Might be incorrect URL, server error who knows.<br></br>Anyway, don't do it again.</h3>
-        <h1 style="margin-top: 3em; color: white">Press anywhere to continue.</h1>
+        <h1 style="margin-top: 2em; color: white">ERROOOORRR</h1>
+        <h3 style="margin-top: 4em; color: white">Might be incorrect URL, too large file, server error who knows.</h3>
+        <h1 style="margin-top: 1em; color: white">Press anywhere to continue.</h1>
+        <button id="thebutton" class="btn btn-info" onclick="changeButtonText()">anywhere</button>
         <footer th:replace="fragments/layout :: footer">
             <p>footer</p>
         </footer>
+        <script th:src="@{/javascript/code.js}" defer></script>
     </body>
 </html>

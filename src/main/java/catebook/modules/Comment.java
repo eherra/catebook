@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package catebook.objects;
+package catebook.modules;
 
 import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
@@ -20,4 +15,5 @@ public class Comment extends AbstractPersistable<Long> {
     private String date;
     private String commentor;
     private int likes;
+    private Long belonginTo;
 }

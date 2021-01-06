@@ -1,23 +1,22 @@
 
 package catebook.controllers;
 
-import catebook.objects.Account;
+import catebook.modules.Account;
 import catebook.repositories.AccountRepository;
+import catebook.services.AccountService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class RegisterController {
+    
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountService accountService;
     
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -33,26 +32,18 @@ public class RegisterController {
     }
     
     @PostMapping("/register")
-    public String addAccount(@Valid @ModelAttribute Account account, BindingResult bindingResult) {
+    public String addAccount(@Valid @ModelAttribute Account accountToRegister, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "register";
         }
         
-        // if username exist already
-        if (checkIfUserNameExist(account.getUsername())) {
-            account.setUsername("username already exists. Choose other one.");
+        if (accountService.isUsernameUsed(accountToRegister.getUsername())) {
+            accountToRegister.setUsername("Username already exists. Choose other one.");
             return "register";
-
         }
         
-        account.setPassword(passwordEncoder.encode(account.getPassword()));
-        accountRepository.save(account);
+        accountToRegister.setPassword(passwordEncoder.encode(accountToRegister.getPassword()));
+        accountService.saveAccount(accountToRegister);
         return "redirect:/login";
-    }
-    
-    public boolean checkIfUserNameExist(String username) {
-        return accountRepository.findAll()
-                .stream()
-                .anyMatch(h -> h.getUsername().equals(username));
     }
 }

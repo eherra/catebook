@@ -1,14 +1,10 @@
 
-package catebook.objects;
+package catebook.modules;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -23,21 +19,18 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class Account extends AbstractPersistable<Long> {
     
     @NotEmpty
-    @Size(min = 4, max = 30)
+    @Size(min = 4, max = 16)
     private String username;
-    
-    @NotEmpty
-    @Size(min = 4, max = 30)
-    private String fullName;
     
     @NotEmpty
     @Size(min = 4, max = 30)
     private String profileName;
     
     @NotEmpty
+    @Size(min = 6)
     private String password;
     
-    private int indexOfProfilePhoto = -1;
+    private Long profilePhotoId = -1L;
     
     @ManyToMany
     List<Account> friendRequests = new ArrayList();

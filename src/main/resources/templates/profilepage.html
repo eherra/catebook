@@ -3,7 +3,7 @@
         <meta charset="UTF-8" />
         <title>Profile page</title>
     </head>
-    <body>
+    <body style="background-image: url('https://i.ibb.co/gdP2rRB/vibincatto-Convert-Image-removebg-preview.png'); background-repeat: no-repeat; background-position: right 0% bottom 0%; background-size: 30% 30%;">
         <header th:replace="fragments/layout :: header">
             <p>menu</p>
         </header>
@@ -11,15 +11,14 @@
             <div class="row">
                 <div class="col-sm-4 well text-left">
                     <div class="well">
-                        <h4 th:if="${user.username == currentlyLogged}" th:text="'Hi ' + ${user.fullName} + ','"></h4>
-                        <h4 th:unless="${user.username == currentlyLogged}" th:text="'Profile page of ' + ${user.fullName} + ','"></h4>
-                        <!--if indexOfProfilePhoto == -1, profile photo is not setted-->
-                        <img th:if="${user.indexOfProfilePhoto == -1}" src="https://i.pinimg.com/originals/eb/0e/6a/eb0e6a06620425c90ea36b3f0336ffe6.jpg" class="img-circle" height="200" width="200" alt="profilePhoto">
-                        <img th:unless="${user.indexOfProfilePhoto == -1}" th:src="@{/albumpage/{id}/content/{username}(id=${user.indexOfProfilePhoto}, username=${user.username})}" class="img-circle" height="200" width="200" alt="profilePhoto">
+                        <h4 th:if="${isOwnerPage}" th:text="'Hi ' + ${user.profileName} + ','"></h4>
+                        <h4 th:if="${!isOwnerPage}" th:text="'Profile page of ' + ${user.profileName} + ','"></h4>
+                        <img th:if="${profilePhotoHasBeenSet}" th:src="*{'data:image/jpg;base64,'+ pictureString}" height="200" width="200" alt="profilePhoto">
+                        <img th:if="${!profilePhotoHasBeenSet}" src="https://i.pinimg.com/originals/eb/0e/6a/eb0e6a06620425c90ea36b3f0336ffe6.jpg" class="img-circle" height="200" width="200" alt="profilePhoto">
                     </div>
-                    <div th:if="${user.username == currentlyLogged}" class="well">
+                    <div th:if="${isOwnerPage}" class="custom-file">
                         <form method="POST" th:action="@{/addPhoto}" enctype="multipart/form-data">
-                            <input type="file" name="file" id="file" required/>
+                            <input style="margin-top: 0.3em" type="file" name="file" required/>
                             <small>(Supports jpg, png and jpeg. Not too big ones.)</small>
                             <input style="margin-bottom: 0.4em;" type="text" id="form1" class="form-control" name="photoComment" placeholder="Describe the photo">
                             <button type="submit" class="btn btn-info">Add photo to your album!</button>
@@ -33,7 +32,7 @@
                             <div style="background-color: #79a3b1; margin-bottom: 0.5em; margin-left: 1em;">
                                 <small th:text="${comment.date}"></small>
                                 <h6 th:text="${comment.commentor} + ' commented:'"></h6>
-                                <p th:text="${comment.text}">Comment</p> 
+                                <p style="margin-top: -0.5em" th:text="${comment.text}">Comment</p> 
                                     <div class="d-flex justify-content-center">
                                         <p style="margin-right: 0.5em" th:text="'Likes: ' + ${comment.likes}">Comment</p>    
                                         <form th:action="@{/profilepage/like/{id}/user/{username}(id=${comment.id}, username = ${user.username})}" method="POST">
@@ -55,15 +54,11 @@
             <div class="col-sm-4 text-center">
                 <div class="well">
                     <h4 style="text-decoration: underline;" th:text="'Photo album of ' + ${user.profileName}"></h4>
-                    <form th:action="@{/albumpage/{username}(username=${user.username})}" method="GET">
-                        <button type="submit" class="btn btn-info">Album</button>
-                    </form>
+                    <a th:href="@{/albumpage/{username}(username=${user.username})}" class="btn btn-info">Album</a>
                 </div>
                 <div class="well">
                     <h4 style="text-decoration: underline;" th:text="'Friends of ' + ${user.profileName}"></h4>
-                    <form th:action="@{/friendpage/{userId}(userId=${user.id})}" method="GET" >
-                        <button type="submit" class="btn btn-info">See friends</button>
-                    </form>
+                    <a th:href="@{/friendpage/{username}(username=${user.username})}" class="btn btn-info">See friends</a>
                 </div>
             </div>
             </div>

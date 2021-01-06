@@ -1,69 +1,64 @@
+
 package catebook.controllers;
 
-import catebook.objects.Account;
+import org.springframework.web.bind.annotation.*;
+import java.util.*;
+import catebook.modules.Account;
 import catebook.services.AccountService;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SearchProfileController {
-    private String searchString, stringForStayingAtPage;
+    private String searchString, searchStringForStayingAtPage;
 
     @Autowired
     private AccountService accountService;
     
-    @GetMapping("/lookup")
+    @GetMapping("/search")
     public String view(Model model) {
-        Account currentAcccount = accountService.getCurrentlyLoggedAccount();
+        Account currentlyLoggedAccount = accountService.getCurrentlyLoggedAccount();
         
+        // fix
         if (searchString != null) {
-            model.addAttribute("accounts", getUsersToView(searchString));
+            model.addAttribute("searchAccounts", accountService.getUsersToViewOnSearch(searchString));
         } else {
-            model.addAttribute("accounts", new ArrayList());
+            model.addAttribute("searchAccounts", new ArrayList());
         }
         
-        model.addAttribute("currentAccount", currentAcccount);
-        model.addAttribute("friendList", accountService.getUsernamesFromFriends(currentAcccount.getUsername()));
+        model.addAttribute("currentlyLoggedAccount", currentlyLoggedAccount);
+        model.addAttribute("friendList", accountService.getUsernamesFromFriends(currentlyLoggedAccount.getUsername()));
         searchString = null;
         
-        return "lookup";
+        return "search";
     }
     
-    @PostMapping("/lookup")
+    @PostMapping("/search")
     public String searchProfile(@RequestParam String name) {
-        searchString = name;
-        stringForStayingAtPage = name;
-        return "redirect:/lookup";
+        searchString = name.toLowerCase();
+        searchStringForStayingAtPage = name.toLowerCase();
+        return "redirect:/search";
     }    
     
     @Transactional
-    @PostMapping("/lookup/sendRequest/{id}")
+    @PostMapping("/search/sendRequest/{id}")
     public String sendFriendRequest(@PathVariable Long id) {
-        Account requestinAcc = accountService.getCurrentlyLoggedAccount();
-        Account toReceiveRequest = accountService.getAccountWithId(id);
+        Account requestinAccount = accountService.getCurrentlyLoggedAccount();
+        Account toReceiveRequestAccount = accountService.getAccountWithId(id);
         
-        if (!toReceiveRequest.getFriendRequests().contains(requestinAcc)
-                && !toReceiveRequest.getFriends().contains(requestinAcc)) {
-            toReceiveRequest.getFriendRequests().add(requestinAcc);
+        if (eligibleForFriendRequest(requestinAccount, toReceiveRequestAccount)) {
+            toReceiveRequestAccount.getFriendRequests().add(requestinAccount);
         }
-        searchString = stringForStayingAtPage;
-        return "redirect:/lookup";
+        
+        searchString = searchStringForStayingAtPage;
+        return "redirect:/search";
     }
     
-    public List<Account> getUsersToView(String searchString) {
-        return accountService.getAllAccounts()
-                .stream()
-                .filter(h-> h.getProfileName().contains(searchString))
-                .collect(Collectors 
-                .toCollection(ArrayList::new)); 
+    public boolean eligibleForFriendRequest(Account requestinAcc, Account toReceiveRequest) {
+        return !toReceiveRequest.getFriendRequests().contains(requestinAcc) 
+                && !toReceiveRequest.getFriends().contains(requestinAcc);
     }
 }

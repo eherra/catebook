@@ -3,9 +3,22 @@
     <head th:replace="fragments/layout :: head(title='Friend Page')">
         <meta charset="UTF-8" />
         <title>Friend page</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     </head>
+    <style>
+        body {
+            background-image: url('https://i.ibb.co/FWyjDy7/catto-removebg-preview-1.png');
+        }
+        
+        h5 {
+            color: white; 
+            font-weight: bold; 
+            font-family: New Kansas;
+        }
+        
+        h3 {
+            text-decoration: underline;
+        }
+    </style>
     <body>
         <header th:replace="fragments/layout :: header">
             <p>menu</p>
@@ -13,18 +26,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h3 style="text-decoration: underline" th:text="'Friends of ' + ${user.profileName} +':'"></h3>
+                    <h3 th:text="'Friends of ' + ${user.profileName} +':'"></h3>
                     <h6 th:if="${user.friends.empty}">No friends to show. :(</h6>
                     <section th:each="user : ${user.friends}">
-                        <h5 th:text="${user.fullName}"></h5>
+                        <h5 th:text="${user.profileName}"></h5>
                         <a style="text-decoration: none; color: white; margin-left: 0.3em" th:href="@{/profilepage/{user}(user=${user.username})}" class="btn btn-info btn-sm">Show profile</a>
                     </section>
                 </div>
-                <div class="col-sm-6" th:if="${user.username == currentlyLogged.username}">
-                    <h3 style="text-decoration: underline">Friend requests:</h3>
+               
+                <div th:if="${user.username == currentlyLogged.username}" class="col-sm-6">
+                    <h3>Friend requests:</h3>
                     <h6 th:if="${currentlyLogged.friendRequests.empty}">No pending friend requests.</h6>
                     <section th:each="friend : ${user.friendRequests}">
-                        <h5 th:text="${friend.fullName}"></h5>
+                        <h5 th:text="${friend.profileName}"></h5>
                         <div class="row form-inline justify-content-center">
                             <div class="form-group">
                                 <form method="POST" th:action="@{/friendpage/accept/{id}(id=${friend.id})}">

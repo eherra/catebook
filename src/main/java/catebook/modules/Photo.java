@@ -1,9 +1,8 @@
 
-package catebook.objects;
+package catebook.modules;
 
-import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,10 +14,10 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Photo extends AbstractPersistable<Long>  {
-    
-    private String photoText;
     private int likes;
-
+    private Long ownerId;
+    private String description;
+    
     @Lob
     private byte[] content;
 }

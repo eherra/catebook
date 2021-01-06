@@ -1,7 +1,7 @@
 
 package catebook.services;
 
-import catebook.objects.Account;
+import catebook.modules.Account;
 import catebook.repositories.AccountRepository;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;

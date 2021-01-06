@@ -1,8 +1,7 @@
 
 package catebook.controllers;
 
-import catebook.services.AccountService;
-import catebook.services.CommentService;
+import catebook.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

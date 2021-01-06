@@ -1,11 +1,10 @@
 
 package catebook.repositories;
 
-import catebook.objects.AlbumLike;
-import catebook.objects.WallCommentLike;
+import catebook.modules.AlbumLike;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface AlbumLikeRepository extends JpaRepository<AlbumLike, Long> {
-        AlbumLike findByPhotoId(Long photoId);
+    AlbumLike findByPhotoId(Long photoId);
 }

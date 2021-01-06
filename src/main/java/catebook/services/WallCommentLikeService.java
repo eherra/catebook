@@ -1,6 +1,6 @@
 package catebook.services;
 
-import catebook.objects.WallCommentLike;
+import catebook.modules.*;
 import catebook.repositories.WallCommentLikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +17,9 @@ public class WallCommentLikeService {
     
     public void saveWallCommentLike(WallCommentLike like) {
         wallCommentLikeRepository.save(like);
+    }
+    
+    public boolean hasAccountAlreadyLikedComment(WallCommentLike commentLikeHelper, Account accountWhoLiked) {
+        return commentLikeHelper.getWhoLiked().contains(accountWhoLiked);
     }
 }

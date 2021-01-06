@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package catebook.objects;
+package catebook.modules;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AlbumLike extends AbstractPersistable<Long>{
+public class AlbumLike extends AbstractPersistable<Long> {
     
     private Long photoId;
     
