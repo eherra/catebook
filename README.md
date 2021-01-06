@@ -24,7 +24,7 @@ mvn compile exec:java -Dexec.mainClass=catebook.Main
 Fill the inputs with info you want to add to your/to your cat's account. Limits for fields:
 * Username: 4 to 16 characters
 * Cate name: 4 to 30 characters
-* Password: 6 to infinite characters
+* Password: 6 to infinite (not really) characters
 
 In the case of username is taken, you will get error message to the username input field.
 
