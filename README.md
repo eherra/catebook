@@ -22,9 +22,9 @@ mvn compile exec:java -Dexec.mainClass=catebook.Main
 <img src="https://github.com/eherra/catebook/blob/main/photos/registernew.png" witdth="827" height="499">
 
 Fill the inputs with info you want to add to your/to your cat's account. Limits for fields:
-* Username: 4 to 16 characters
-* Cate name: 4 to 30 characters
+* Username: 4 to 30 characters
 * Password: 6 to infinite* characters
+* Cate name: 4 to 16 characters
 
 <sub><b>*not really</b></sub>
 
