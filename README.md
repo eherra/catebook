@@ -4,9 +4,9 @@ A social media platform for cats.
 
 ### About Catebook
 
-The project has been made with a help of Java Spring boot, Spring MVC, Thymeleaf template engine for HTML modifications and some Bootstrap here and there. 
+The project has been made with a help of Java Spring boot and Thymeleaf template engine for HTML modifications and some Bootstrap here and there. 
 
-Main focus has been on learning back end programming, but the front end was not left without attention. (The UX might not be the best)
+Main focus has been on learning backend development, but the front end was not left without attention. (The UX might not be the best)
 
 ### How to get started.
 
