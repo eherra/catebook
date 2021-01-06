@@ -59,6 +59,10 @@ public class AccountService {
         return acc.getProfilePhotoId().equals(photoToDeleteId);
     }
     
+    public boolean requestMakerIsAuthorized(String username) {
+        return username.equals(getCurrentlyLoggedUsername());
+    }
+    
     public List<String> getUsernamesFromFriends(String logged) {
         return accountRepository.findByUsername(logged).getFriends()
                 .stream()
@@ -66,7 +70,6 @@ public class AccountService {
                 .collect(Collectors 
                 .toCollection(ArrayList::new));
     }
-    
         
     public List<Account> getUsersToViewOnSearch(String searchString) {
         return accountRepository.findAll()

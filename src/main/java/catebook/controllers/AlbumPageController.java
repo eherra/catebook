@@ -61,8 +61,12 @@ public class AlbumPageController {
     }
     
     @Transactional
-    @PostMapping("/deletephoto/{photoIndex}")
-    public String delete(@PathVariable int photoIndex) {        
+    @PostMapping("/deletephoto/{username}/{photoIndex}")
+    public String delete(@PathVariable String username, @PathVariable int photoIndex) {        
+        if (!accountService.requestMakerIsAuthorized(username)) {
+            return "redirect:/albumpage/{username}/{photoIndex}"; 
+        }
+        
         Account currentlyLoggedAccount = accountService.getCurrentlyLoggedAccount();
         Long photoToDeleteId = albumPhotos.get(photoIndex).getPhotoId();
         
@@ -101,11 +105,15 @@ public class AlbumPageController {
     }
     
     @Transactional
-    @PostMapping("/changeprofilephoto/{photoIndex}/{photoId}") 
-    public String changeProfilePhoto(@PathVariable Long photoId) {
+    @PostMapping("/changeprofilephoto/{username}/{photoIndex}/{photoId}") 
+    public String changeProfilePhoto(@PathVariable String username, @PathVariable Long photoId) {
+        if (!accountService.requestMakerIsAuthorized(username)) {
+            return "redirect:/albumpage/{username}/{photoIndex}"; 
+        }
+        
         Account currentlyLoggedAccount = accountService.getCurrentlyLoggedAccount();
         currentlyLoggedAccount.setProfilePhotoId(photoId);
-        return "redirect:/albumpage/" + currentlyLoggedAccount.getUsername() + "/{photoIndex}";
+        return "redirect:/albumpage/{username}/{photoIndex}";
     }
     
     @GetMapping("/albumpage/previous/{username}/getPhoto/{photoIndex}")

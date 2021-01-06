@@ -48,7 +48,7 @@ public class ProfilePageController {
      }
    
     @Transactional
-    @PostMapping("/profilepage/{id}")
+    @PostMapping("/profilepage/comment/{id}")
     public String addComment(@PathVariable Long id, @RequestParam String comment) {
         Account accountWhoCommented = accountService.getCurrentlyLoggedAccount();
         Account whoseWall = accountService.getAccountWithId(id);
