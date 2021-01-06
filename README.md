@@ -19,7 +19,7 @@ mvn compile exec:java -Dexec.mainClass=catebook.Main
 3. From your browser navigate to **localhost:/8080/register**. (assuming the program started on port 8080)
 
 **Page like this appears:**
-<img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/register.png" witdth="827%" height="519">
+<img src="https://github.com/eherra/catebook/blob/main/photos/registernew.png" witdth="827" height="519">
 
 Fill the inputs with info you want to add to your/to your cat's account. Limits for fields 4-30 characters (min. 4, max. 30).
 In the case of username is taken, you will get error message to the username input field.
@@ -27,17 +27,17 @@ In the case of username is taken, you will get error message to the username inp
 After pressing **Register!** button you will be redirected to login page where you can enter your username/password combination you just created.
 
 **Succesful login leads to a page below:**
-<img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/frontpage.png" witdth="827%" height="519">
+<img src="https://github.com/eherra/catebook/blob/main/photos/frontpage.png" witdth="827" height="519">
 
 ### Searching for other cates
 If you want to search for other cates from the platform, press ***Search profiles*** from navigation bar and you will be direceted to **page below:**
-<img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/searchh.png" witdth="827%" height="519">
+<img src="https://github.com/eherra/catebook/blob/main/photos/searchprofiles.png" witdth="827" height="519">
 
 From the page you can search for cates around the platform by their cate name.
 
 ### Profile page
 Hitting from navigation bar ***Profile page*** link, you will be directed to:
-<img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/profilep.png" witdth="827%" height="519">
+<img src="https://github.com/eherra/catebook/blob/main/photos/profile.png" witdth="827" height="519">
 
 When you are visiting someone else's profile page, the field where you can add photos to the album disappears from the below of the profile photo.
 
@@ -45,16 +45,18 @@ At your own profile page and at other users profile pages - you can leave commen
 
 ### Photo album
 **View from photo album.**
-<img src="https://github.com/eherra/catebook/blob/main/src/main/resources/images/albumpage.png" witdth="827%" height="519">
+<img src="https://github.com/eherra/catebook/blob/main/photos/albumpage.png" witdth="827" height="519">
 If you are a visitor of the album, you have no access for buttons **Change to profile photo** and **Delete photo**.
 
-In album you can have max 10 photos at the time. In case you want to add more, please delete photos before adding more.
-You can scroll the photos with buttons **previous** and **next** which will appear on top the photo. In the case of you are at index 0 at the album, **previous** button disappears and at index 9 or at last photo of your album - **next** button disappears.
+You can scroll the photos with buttons **previous** and **next** which will appear on top the photo. In the case of you are at index 0 at the album, **previous** button disappears and at index of last photo of your album - **next** button disappears.
 
 ### Friends
 On platform you can send friend requests to other cates, and if they accept the request - you will become friends. 
 
 You can accept friend requests and see your friendlist from your profile page from button ***See friends***.
+
+**View from friendpage.**
+<img src="https://github.com/eherra/catebook/blob/main/photos/friendpage.png" witdth="827" height="519">
 
 ### Error cases
 
