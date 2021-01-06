@@ -37,7 +37,7 @@ After pressing **Register!** button you will be redirected to login page where y
 If you want to search for other cates from the platform, press ***Search profiles*** from navigation bar and you will be directed to **page below:**
 <img src="https://github.com/eherra/catebook/blob/main/photos/searchprofiles.png" witdth="827" height="499">
 
-In order to search all profiles from the platform, press **Go!** without any input string. Otherwise you can search for spesific cates around the platform by their cate name.
+In order to search all profiles from the platform, press **Go!** without any input string. Otherwise you can search for specific cates around the platform by their cate name.
 
 ### Profile page
 Hitting from navigation bar ***Profile page*** link, you will be directed to:
@@ -45,7 +45,7 @@ Hitting from navigation bar ***Profile page*** link, you will be directed to:
 
 When you are visiting someone else's profile page, the field where you can add photos to the album disappears from the below of the profile photo.
 
-At your own profile page and at other users profile pages - you can leave comments to the wall. The publish will include cate name, time when creating the comment and amount of the likes of the comment. (zero likes if hasn't acquired any)
+At your own profile page and at other users profile pages - you can leave comments to the wall. The publish will include cate name, time when creating the comment and amount of likes of the comment. (zero if hasn't acquired any)
 
 ### Photo album
 **View from photo album.**
