@@ -6,7 +6,7 @@ A social media platform for cats.
 
 The project has been made with a help of Java Spring boot, Thymeleaf template engine for HTML modifications and some Bootstrap and JavaScript here and there. 
 
-Main focus has been on learning backend development, but the front end was not left without attention. (The UX might not be the best)
+Main focus has been on learning backend development, but the front end was not left without attention. (The UX not be the best)
 
 ### How to get started.
 
@@ -67,7 +67,7 @@ You can accept friend requests and see your friendlist from your profile page fr
 
 ### Error cases
 
-Site should work properly on normal use and the links on the site lead to valid places. However, if incorrect url is provided by user - page will inform the user about this by showing a error page. If something weird happens, navigate to **/frontpage**.
+Site should work properly on normal use and the links on the site lead to valid places. However, if incorrect url is provided by user - page will inform the user about this by showing a error page. From the error page, you can press any links from the navigation bar to move forward.
 
 If you forgot your password - create new user. :)
 
