@@ -29,10 +29,10 @@
                             <img style="margin-bottom: 0.5em" id="pic" th:src="*{'data:image/jpg;base64,'+ pictureString}" alt="#" width="400" height="500"/>
                             <div th:if="${isOwnerPage}">
                                 <div class="d-flex justify-content-center">
-                                    <form  method="POST" th:action="@{/changeprofilephoto/{photoIndex}/{photoId}(photoIndex=${photoIndex},photoId=${photo.id})}">
+                                    <form  method="POST" th:action="@{/changeprofilephoto/{username}/{photoIndex}/{photoId}(username=${user.username}, photoIndex=${photoIndex},photoId=${photo.id})}">
                                         <button style="margin-right: 0.3em" type="submit" class="btn btn-info btn-sm">Change to profile photo</button>
                                     </form>
-                                    <form method="POST" th:action="@{/deletephoto/{photoIndex}(photoIndex=${photoIndex})}">
+                                    <form method="POST" th:action="@{/deletephoto/{username}/{photoIndex}(username=${user.username}, photoIndex=${photoIndex})}">
                                         <button type="submit" class="btn btn-danger btn-sm">Delete photo</button>
                                     </form>
                                 </div>
