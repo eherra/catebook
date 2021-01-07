@@ -28,17 +28,17 @@
                         <div class="col-md-7">
                             <img style="margin-bottom: 0.5em" id="pic" th:src="*{'data:image/jpg;base64,'+ pictureString}" alt="#" width="400" height="500"/>
                             <div th:if="${isOwnerPage}">
-                                     <div class="d-flex justify-content-center">
-                                         <form  method="POST" th:action="@{/changeprofilephoto/{username}/{photoIndex}/{photoId}(username=${user.username},photoIndex=${photoIndex},photoId=${photo.id})}">
-                                             <button style="margin-right: 0.3em" type="submit" class="btn btn-info btn-sm">Change to profile photo</button>
-                                         </form>
-                                         <form method="POST" th:action="@{/deletephoto/{username}{photoIndex}(username=${user.username}, photoIndex=${photoIndex})}">
-                                             <button type="submit" class="btn btn-danger btn-sm">Delete photo</button>
-                                         </form>
-                                     </div>
+                                <div class="d-flex justify-content-center">
+                                    <form  method="POST" th:action="@{/changeprofilephoto/{photoIndex}/{photoId}(photoIndex=${photoIndex},photoId=${photo.id})}">
+                                        <button style="margin-right: 0.3em" type="submit" class="btn btn-info btn-sm">Change to profile photo</button>
+                                    </form>
+                                    <form method="POST" th:action="@{/deletephoto/{photoIndex}(photoIndex=${photoIndex})}">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete photo</button>
+                                    </form>
+                                </div>
                              </div>
                         </div>
-                        <div style="margin-top: -2em" class="col-md-3">
+                        <div class="col-md-3">
                             <h5 style="text-decoration: underline">Photo description:</h5>
                             <h4 th:text="${photo.description}"></h4>
                             <small th:if="${photo.description == ''}">No description.</small>

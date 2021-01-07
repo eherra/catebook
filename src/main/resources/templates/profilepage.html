@@ -16,7 +16,7 @@
                         <img th:if="${profilePhotoHasBeenSet}" th:src="*{'data:image/jpg;base64,'+ pictureString}" height="200" width="200" alt="profilePhoto">
                         <img th:if="${!profilePhotoHasBeenSet}" src="https://i.pinimg.com/originals/eb/0e/6a/eb0e6a06620425c90ea36b3f0336ffe6.jpg" class="img-circle" height="200" width="200" alt="profilePhoto">
                     </div>
-                    <div th:if="${isOwnerPage}" class="custom-file">
+                    <div style="margin-bottom: 6em;" th:if="${isOwnerPage}" class="custom-file">
                         <form method="POST" th:action="@{/addPhoto}" enctype="multipart/form-data">
                             <input style="margin-top: 0.3em" type="file" name="file" required/>
                             <small>(Supports jpg, png and jpeg. Not too big ones.)</small>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     <h5>Leave a post on the Wall</h5>
-                    <form role="form" method="POST" th:action="@{/profilepage/comment/{id}(id=${user.id})}">
+                    <form role="form" method="POST" th:action="@{/profilepage/{id}(id=${user.id})}">
                         <div class="form-group">
                             <textarea style="margin-bottom: 0.4em" class="form-control" name="comment" maxlength="35" rows="2" placeholder="Limited for 35 characters." required></textarea>
                             <button type="submit" class="btn btn-outline-info">Add comment</button>
@@ -53,12 +53,12 @@
             </div>
             <div class="col-sm-4 text-center">
                 <div class="well">
-                    <h4 style="text-decoration: underline;" th:text="'Photo album of ' + ${user.profileName}"></h4>
+                    <h4 th:text="'Photo album of ' + ${user.profileName}"></h4>
                     <a th:href="@{/albumpage/{username}(username=${user.username})}" class="btn btn-info">Album</a>
                 </div>
                 <div class="well">
-                    <h4 style="text-decoration: underline;" th:text="'Friends of ' + ${user.profileName}"></h4>
-                    <a th:href="@{/friendpage/{username}(username=${user.username})}" class="btn btn-info">See friends</a>
+                    <h4 th:text="'Friends of ' + ${user.profileName}"></h4>
+                    <a style="margin-bottom: 4em" th:href="@{/friendpage/{username}(username=${user.username})}" class="btn btn-info">See friends</a>
                 </div>
             </div>
             </div>

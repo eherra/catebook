@@ -24,7 +24,7 @@
                             <form th:action="@{/search/sendRequest/{id}(id=${account.id})}" method="POST" >
                                 <div th:switch="true">
                                     <a th:case="${#lists.contains(account.friendRequests, currentlyLoggedAccount)}" style="background-color: #16697a; color: white" class="btn">Pending friend request.</a>
-                                    <a th:case="${#lists.contains(currentlyLoggedAccount.friendRequests, account)}" th:href="@{/friendpage/{username}(username=${currentlyLoggedAccount.username})}" style="background-color: #16697a; color: white;" class="btn">Accept/Decline requests</a>
+                                    <a th:case="${#lists.contains(currentlyLoggedAccount.friendRequests, account)}" title="Go to Friend page" th:href="@{/friendpage/{username}(username=${currentlyLoggedAccount.username})}" style="background-color: #16697a; color: white;" class="btn">Accept/Decline requests</a>
                                     <a th:case="${#lists.contains(friendList, account.username)}" style="background-color: #c6ebc9" class="btn">You are friends.</a>
                                     <button th:case="*" type="text" class="btn btn-info">Send friend request</button>
                                     <a style="text-decoration: none; color: white;" th:href="@{/profilepage/{user}(user=${account.username})}" class="btn btn-info">Show profile</a>
