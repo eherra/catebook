@@ -1,8 +1,10 @@
 
 package catebook.modules;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,5 +21,6 @@ public class Photo extends AbstractPersistable<Long>  {
     private String description;
     
     @Lob
+    @Basic(fetch = FetchType.LAZY)
     private byte[] content;
 }
