@@ -43,7 +43,7 @@ In order to search all profiles from the platform, press **Go!** without any inp
 
 ### Profile page
 Hitting from navigation bar ***Profile page*** link, you will be directed to:
-<img src="https://github.com/eherra/catebook/blob/main/photos/profile.png" witdth="827" height="499">
+<img src="https://github.com/eherra/catebook/blob/main/photos/profilee.png" witdth="827" height="499">
 
 When you are visiting someone else's profile page, the field where you can add photos to the album disappears from the below of the profile photo.
 
