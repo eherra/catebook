@@ -33,7 +33,7 @@ In the case of username is taken, you will get error message to the username inp
 After pressing **Register!** button you will be redirected to login page where you can enter your username/password combination you just created.
 
 **Succesful login leads to a page below:**
-<img src="https://github.com/eherra/catebook/blob/main/photos/frontpage.png" witdth="827" height="499">
+<img src="https://github.com/eherra/catebook/blob/main/photos/frontpagee.png" witdth="827" height="499">
 
 ### Searching for other cates
 If you want to search for other cates from the platform, press ***Search profiles*** from navigation bar and you will be directed to **page below:**
