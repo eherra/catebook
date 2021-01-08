@@ -48,32 +48,16 @@ public class ProfilePageController {
      }
    
     @Transactional
-    @PostMapping("/profilepage/comment/{id}")
-    public String addComment(@PathVariable Long id, @RequestParam String comment) {
-        Account accountWhoCommented = accountService.getCurrentlyLoggedAccount();
-        Account whoseWall = accountService.getAccountWithId(id);
-        
-        Comment comm = commentService.saveCommentAndReturn(-1L, comment, accountWhoCommented.getProfileName());
-        
-        whoseWall.getWallComments().add(comm);
-        
-        WallCommentLike newLike = new WallCommentLike();
-        newLike.setCommentId(comm.getId());
-        wallCommentLikeService.saveWallCommentLike(newLike);
-                
-        return "redirect:/profilepage/" + whoseWall.getUsername();
+    @PostMapping("/profilepage/comment/{username}")
+    public String addComment(@PathVariable String username, @RequestParam String comment) {
+        commentService.addCommentToWall(-1L, comment, username);
+        return "redirect:/profilepage/{username}";
     }
     
     @Transactional
     @PostMapping("/profilepage/like/{id}/user/{username}") 
     public String addLike(@PathVariable Long id, @PathVariable String username) {
-        Account accountWhoLiked = accountService.getCurrentlyLoggedAccount();
-        WallCommentLike commentLikeHelper = wallCommentLikeService.getWallCommentLikeById(id);
-        
-        if (!wallCommentLikeService.hasAccountAlreadyLikedComment(commentLikeHelper, accountWhoLiked)) {
-            commentService.addLikeToComment(id, commentLikeHelper, accountWhoLiked);
-        } 
-        
+        commentService.addLikeToCommentIfNotLikedAlready(id);
         return "redirect:/profilepage/{username}";
     }
 }

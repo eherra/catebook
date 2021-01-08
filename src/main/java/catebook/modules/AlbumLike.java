@@ -23,6 +23,6 @@ public class AlbumLike extends AbstractPersistable<Long> {
     
     private Long photoId;
     
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     private List<Account> whoLiked = new ArrayList();
 }

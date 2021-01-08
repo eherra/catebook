@@ -18,7 +18,6 @@ public class WallCommentLike extends AbstractPersistable<Long> {
     
     private Long commentId;
     
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     private List<Account> whoLiked = new ArrayList();
-    
 }

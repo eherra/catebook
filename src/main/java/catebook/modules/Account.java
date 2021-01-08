@@ -3,6 +3,7 @@ package catebook.modules;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -33,15 +34,15 @@ public class Account extends AbstractPersistable<Long> {
     
     private Long profilePhotoId = -1L;
     
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     List<Account> friendRequests = new ArrayList();
     
-    @ManyToMany(fetch = FetchType.LAZY)
-    List<Comment> wallComments = new ArrayList();   
-    
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     List<Account> friends = new ArrayList();
     
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
+    List<Comment> commentsOfUser = new ArrayList();  
+    
+    @ManyToMany
     List<Photo> albumPhotos = new ArrayList();   
 }

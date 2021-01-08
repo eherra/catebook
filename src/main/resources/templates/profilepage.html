@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     <h5>Leave a post on the Wall</h5>
-                    <form role="form" method="POST" th:action="@{/profilepage/comment/{id}(id=${user.id})}">
+                    <form role="form" method="POST" th:action="@{/profilepage/comment/{username}(username=${user.username})}">
                         <div class="form-group">
                             <textarea style="margin-bottom: 0.4em" class="form-control" name="comment" maxlength="35" rows="2" placeholder="Limited for 35 characters." required></textarea>
                             <button type="submit" class="btn btn-outline-info">Add comment</button>

@@ -22,7 +22,6 @@ public class SearchProfileController {
     public String view(Model model) {
         Account currentlyLoggedAccount = accountService.getCurrentlyLoggedAccount();
         
-        // fix
         if (searchString != null) {
             model.addAttribute("searchAccounts", accountService.getUsersToViewOnSearch(searchString));
         } else {

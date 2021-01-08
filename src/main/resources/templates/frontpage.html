@@ -8,8 +8,10 @@
         <header th:replace="fragments/layout :: header">
             <p>menu</p>
         </header>
-        <div style="margin-top: 8em; color: white">
+        <div style="margin-top: 6.5em; color: white">
             <h1>Welcome to <b style="color: white; text-decoration: bold;">Cate</b><b style="color: #79a3b1;">book.</b></h1>
+            <h4>A social media platform for cats.</h4>
+            </br>
             <h5 th:text="'Cates globally: '+ ${accounts}"></h5>
             <h5 th:text="'Comments on platform: '+ ${comments}"></h5>
             <h5 th:text="'Likes on platform: '+ ${likes}"></h5>

@@ -27,27 +27,17 @@ public class FriendPageController {
     }
     
     @Transactional
-    @PostMapping("/friendpage/accept/{id}")
-    public String acceptFriend(@PathVariable Long id) {
-        Account currentlyLoggedAccount = accountService.getCurrentlyLoggedAccount();
-        Account whoSentRequest = accountService.getAccountWithId(id);
-        
-        currentlyLoggedAccount.getFriendRequests().remove(whoSentRequest);
-        currentlyLoggedAccount.getFriends().add(whoSentRequest);
-        whoSentRequest.getFriends().add(currentlyLoggedAccount);
-
-        return "redirect:/friendpage/" + currentlyLoggedAccount.getUsername();
+    @PostMapping("/friendpage/accept/{id}/{username}")
+    public String acceptFriend(@PathVariable Long id, @PathVariable String username) {
+        accountService.acceptAndUpdateFriendLists(id);
+        return "redirect:/friendpage/{username}";
     }
     
     @Transactional
-    @PostMapping("/friendpage/decline/{id}")
+    @PostMapping("/friendpage/decline/{id}/{username}")
     public String declineFriend(@PathVariable Long id) {
-        Account currentlyLoggedAccount = accountService.getCurrentlyLoggedAccount();
-        Account whoSentRequest = accountService.getAccountWithId(id);
-        
-        currentlyLoggedAccount.getFriendRequests().remove(whoSentRequest);
-
-        return "redirect:/friendpage/" + currentlyLoggedAccount.getUsername();
+        accountService.declineFriendRequestAndRemove(id);
+        return "redirect:/friendpage/{username}";
     }
     
 }

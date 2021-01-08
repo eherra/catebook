@@ -12,12 +12,12 @@
             <h3 style="text-align: center; text-decoration: underline" th:text="@{'Album of ' + ${user.profileName}}">Album text</h3>
             <div th:if="${userHasPhotos}">
                 <div class="d-flex justify-content-center">
-                    <div th:if="${zeroIndex}" class="form-group">
+                    <div th:if="${isPreviousVisible}" class="form-group">
                         <form method="GET" th:action="@{/albumpage/previous/{username}/getPhoto/{photoIndex}(username=${user.username}, photoIndex=${photoIndex})}">
                             <button style="margin-right: 0.4em" type="submit" class="btn btn-info">Previous</button>
                         </form>
                     </div>
-                    <div class="form-group" th:if="${maxIndex}">
+                    <div class="form-group" th:if="${isNextVisible}">
                         <form method="GET" th:action="@{/albumpage/next/{username}/getPhoto/{photoIndex}(username=${user.username}, photoIndex=${photoIndex})}">
                             <button type="submit" class="btn btn-info">Next</button>
                         </form>

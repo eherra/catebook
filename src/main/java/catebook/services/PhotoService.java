@@ -7,15 +7,29 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
+@EnableCaching
 public class PhotoService {
     
     @Autowired
     private PhotoRepository photoRepository;
     
+    @Autowired
+    private AlbumLikeService albumLikeService;
+    
+    @Autowired
+    private AccountService accountService;
+    
+    public Photo getPhotoById(Long id) {
+        return photoRepository.getOne(id);
+    }
+    
+    @CacheEvict(value = "accounts", allEntries = true)
     public Photo savePhotoAndReturn(MultipartFile file, String photoComment, Account acc) throws IOException {
         if (isImageCorrectType(file)) {
             Photo photo = new Photo();
@@ -33,36 +47,17 @@ public class PhotoService {
             || file.getContentType().equals("image/jpeg")
             || file.getContentType().equals("image/png");
     }
-    
-    // configuration to make it work on Heroku
-    public void deletePhoto(Long photoId) {
-        Photo pho = photoRepository.getOne(photoId);
-        pho.setOwnerId(-1L);
-        //photoRepository.deleteById(photoId);
-    }
-    
-    public Photo getPhotoById(Long id) {
-        return photoRepository.getOne(id);
-    }
-    
-    // Heroku workaround configuration to make photo uploading work.
-    public String getEncodedProfilePhoto(Long photoId) {
-        Photo pho = photoRepository.getOne(photoId);
+   
+    @CacheEvict(value = "accounts", allEntries = true)
+    public void addLikeToPhotoIfNotLikedAlready(Long photoId) {
+        Account accountWhoLiked = accountService.getCurrentlyLoggedAccount();
+        AlbumLike albumLikeHelper = albumLikeService.getAlbumLikeById(photoId);
         
-        try {
-            byte[] encode = Base64.getEncoder().encode(pho.getContent());
-            return new String(encode, "UTF-8");
-        } catch (Exception e) {
-            System.out.println("Couldn't fetch profile photo");
-        }
-        
-        return "";
-    }
-    
-    public void addLikeToPhoto(Long photoId, AlbumLike albumLikeHelper, Account accountWhoLiked) {
-        Photo pho = photoRepository.getOne(photoId);
-        pho.setLikes(pho.getLikes() + 1);
-        albumLikeHelper.getWhoLiked().add(accountWhoLiked);
+        if (!albumLikeService.hasAccountAlreadyLikedPhoto(albumLikeHelper, accountWhoLiked)) {
+            Photo pho = photoRepository.getOne(photoId);
+            pho.setLikes(pho.getLikes() + 1);
+            albumLikeHelper.getWhoLiked().add(accountWhoLiked);
+        } 
     }
     
     // Heroku workaround configuration to make photo uploading work.
@@ -82,6 +77,35 @@ public class PhotoService {
         return toReturnList;
     }
     
+    // Heroku workaround configuration to make photo uploading work.
+    public String getEncodedProfilePhoto(Long photoId) {
+        Photo pho = photoRepository.getOne(photoId);
+
+        try {
+            byte[] encode = Base64.getEncoder().encode(pho.getContent());
+            return new String(encode, "UTF-8");
+        } catch (Exception e) {
+            System.out.println("Couldn't fetch profile photo");
+        }
+
+        return "";
+    }
+    
+    @CacheEvict(value = "accounts", allEntries = true)
+    public void deletePhotoAndRelatedInformation(Long photoToDeleteId) {
+        albumLikeService.deleteAlbumLike(photoToDeleteId);
+        
+        // configuration to make it work on Heroku
+        Photo pho = photoRepository.getOne(photoToDeleteId);
+        pho.setOwnerId(-1L);
+        
+        Account currentlyLoggedAccount = accountService.getCurrentlyLoggedAccount();
+        if (accountService.deletedPhotoWasProfilephoto(currentlyLoggedAccount, photoToDeleteId)) {
+            currentlyLoggedAccount.setProfilePhotoId(-1L);
+        }
+        
+        //photoRepository.deleteById(photoId);
+    }
     
     
     
