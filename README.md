@@ -75,7 +75,7 @@ If you forgot your password - create new user. :)
 
 Application is hosted on Heroku as well and by default users can't upload any photos on Heroku's free version. (can be uploaded, but some actions when using the database regarding the photo information (fetching and showing the photo/removing photo) will lead to an error.)
 
-However, there's a trick for this and that's why there're a bit odd looking configurations on my code when fetching photos from the database in order to make it work on free version. (photo bytes encoded to a string with a help of [Base64](https://en.wikipedia.org/wiki/Base64) libary when fetching and showing the photo)
+However, there's a trick for this and that's why there're a bit odd looking configurations on my code when fetching photos from the database in order to make it work on free version. (photo bytes encoded to a string with a help of [Base64](https://en.wikipedia.org/wiki/Base64) library when fetching and showing the photo)
 
 Heroku's PostgreSQL database add-on can't be used with this trick so the Heroku database works only while it's running on Heroku's server after starting it (30 minutes after last interaction by any user). After 30 minutes, the application's database is cleared by Heroku.
 
