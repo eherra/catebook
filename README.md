@@ -50,7 +50,7 @@ When you are visiting someone else's profile page, the field where you can add p
 At your own profile page and at other users profile pages - you can leave comments to the wall. The publish will include cate name, time when creating the comment and amount of likes of the comment. (zero if hasn't acquired any)
 
 ### Photo album
-**View from photo album.**
+**A view from photo album.**
 <img src="https://github.com/eherra/catebook/blob/main/photos/albumpage.png" witdth="827" height="499">
 
 If you are a visitor of the album, you have no access for buttons **Change to profile photo** and **Delete photo**.
@@ -62,7 +62,7 @@ On platform you can send friend requests to other cates, and if they accept the 
 
 You can accept friend requests and see your friendlist from your profile page from button ***See friends***.
 
-**View from friendpage.**
+**A view from friendpage.**
 <img src="https://github.com/eherra/catebook/blob/main/photos/friendpage.png" witdth="827" height="499">
 
 ### Error cases
