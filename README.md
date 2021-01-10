@@ -77,5 +77,5 @@ Application is hosted on Heroku as well and by default users can't upload any ph
 
 However, there's a trick for this and that's why there're a bit odd looking configurations on my code when fetching photos from the database in order to make it work on free version. (photo bytes encoded to a string with a help of [Base64](https://en.wikipedia.org/wiki/Base64) libary when fetching and showing the photo)
 
-Heroku's PostgreSQL database add-on can't be used with this trick so the Heroku application works only while it's running on Heroku's server after starting it (30 minutes after last interaction by any user). After 30 minutes, the database is cleared by Heroku.
+Heroku's PostgreSQL database add-on can't be used with this trick so the Heroku database works only while it's running on Heroku's server after starting it (30 minutes after last interaction by any user). After 30 minutes, the application's database is cleared by Heroku.
 
