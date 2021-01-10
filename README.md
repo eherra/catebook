@@ -18,7 +18,7 @@ mvn compile exec:java -Dexec.mainClass=catebook.Main
 ```
 3. From your browser navigate to **localhost:/8080/register**. (assuming the program started on port 8080)
 
-**Page like this appears:**
+**A page like this appears:**
 <img src="https://github.com/eherra/catebook/blob/main/photos/registernew.png" witdth="827" height="499">
 
 Fill the inputs with info you want to add to your/to your cat's account. Limits for fields:
