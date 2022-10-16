@@ -19,7 +19,7 @@ mvn compile exec:java -Dexec.mainClass=catebook.Main
 3. From your browser navigate to **localhost:/8080/register**. (assuming the program started on port 8080)
 
 **A page like this appears:**
-<img src="https://github.com/eherra/catebook/blob/main/photos/registernew.png" witdth="827" height="499">
+<img src="https://github.com/eherra/catebook/blob/main/photos/registernew.png">
 
 Fill the inputs with info you want to add to your/to your cat's account. Limits for fields:
 * Username: 4 to 30 characters
@@ -33,17 +33,17 @@ In the case of username is taken, you will get error message to the username inp
 After pressing **Register!** button you will be redirected to login page where you can enter your username/password combination you just created.
 
 **Succesful login leads to a page below:**
-<img src="https://github.com/eherra/catebook/blob/main/photos/frontpagee.png" witdth="827" height="499">
+<img src="https://github.com/eherra/catebook/blob/main/photos/frontpagee.png">
 
 ### Searching for other cates
 If you want to search for other cates from the platform, press ***Search profiles*** from navigation bar and you will be directed to **page below:**
-<img src="https://github.com/eherra/catebook/blob/main/photos/searchprofiles.png" witdth="827" height="499">
+<img src="https://github.com/eherra/catebook/blob/main/photos/searchprofiles.png">
 
 In order to search all profiles from the platform, press **Go!** without any input string. Otherwise you can search for specific cates around the platform by their cate name.
 
 ### Profile page
 Hitting from navigation bar ***Profile page*** link, you will be directed to:
-<img src="https://github.com/eherra/catebook/blob/main/photos/profilee.png" witdth="827" height="499">
+<img src="https://github.com/eherra/catebook/blob/main/photos/profilee.png">
 
 When you are visiting someone else's profile page, the field where you can add photos to the album disappears from the below of the profile photo.
 
@@ -51,7 +51,7 @@ At your own profile page and at other users profile pages - you can leave commen
 
 ### Photo album
 **A view from photo album.**
-<img src="https://github.com/eherra/catebook/blob/main/photos/albumpage.png" witdth="827" height="499">
+<img src="https://github.com/eherra/catebook/blob/main/photos/albumpage.png">
 
 If you are a visitor of the album, you have no access for buttons **Change to profile photo** and **Delete photo**.
 
@@ -63,14 +63,14 @@ On platform you can send friend requests to other cates, and if they accept the 
 You can accept friend requests and see your friendlist from your profile page from button ***See friends***.
 
 **A view from friendpage.**
-<img src="https://github.com/eherra/catebook/blob/main/photos/friendpage.png" witdth="827" height="499">
+<img src="https://github.com/eherra/catebook/blob/main/photos/friendpage.png">
 
 ### Error cases
 
 Site should work properly on normal use and the links on the site lead to valid places. However, if incorrect url is provided by user - page will inform the user about this by showing a error page. From the error page, you can press any links from the navigation bar to move forward.
 
-***Error page ***
-<img src="https://github.com/eherra/catebook/blob/main/photos/errorPage.png" witdth="827" height="499">
+**Error page**
+<img src="https://github.com/eherra/catebook/blob/main/photos/errorPage.png">
 
 If you forgot your password - create new user. :)
 
