@@ -69,6 +69,9 @@ You can accept friend requests and see your friendlist from your profile page fr
 
 Site should work properly on normal use and the links on the site lead to valid places. However, if incorrect url is provided by user - page will inform the user about this by showing a error page. From the error page, you can press any links from the navigation bar to move forward.
 
+***Error page ***
+<img src="https://github.com/eherra/catebook/blob/main/photos/errorPage.png" witdth="827" height="499">
+
 If you forgot your password - create new user. :)
 
 ### Heroku
